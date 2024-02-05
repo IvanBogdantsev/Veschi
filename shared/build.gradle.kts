@@ -1,7 +1,10 @@
+import com.acerolla.buildSrc.AppConfiguration
+
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.kotlinCocoapods)
     alias(libs.plugins.androidLibrary)
+    id("dev.icerock.mobile.multiplatform-resources")
 }
 
 kotlin {
@@ -25,12 +28,34 @@ kotlin {
         framework {
             baseName = "shared"
             isStatic = true
+            export("dev.icerock.moko:resources:0.23.0")
+            export("dev.icerock.moko:graphics:0.9.0")
         }
     }
     
     sourceSets {
         commonMain.dependencies {
-            //put your multiplatform dependencies here
+            api("dev.icerock.moko:resources:0.23.0")
+            implementation(projects.data.networking.networkingUtils)
+            implementation(projects.data.networking.authorizationApi.api)
+            implementation(projects.data.networking.authorizationApi.impl)
+            implementation(projects.featureModules.authorization.data)
+            implementation(projects.featureModules.authorization.domain.api)
+            implementation(projects.featureModules.authorization.domain.impl)
+            implementation(projects.core.common)
+            implementation(libs.ktor.core)
+            implementation(libs.ktor.logging)
+            implementation(libs.ktor.serialization)
+            implementation(libs.ktor.serialization.json)
+            implementation(libs.kotlinx.coroutines)
+            implementation(libs.kotlinx.datetime)
+            implementation(libs.content.negotiation)
+            api(libs.koin.core)
+
+            implementation(libs.mvi.core)
+            implementation(libs.mvi.main)
+            implementation(libs.mvi.logging)
+            implementation(libs.mvi.coroutines)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -40,8 +65,16 @@ kotlin {
 
 android {
     namespace = "com.acerolla.things"
-    compileSdk = 34
+    compileSdk = AppConfiguration.compileSdk
     defaultConfig {
-        minSdk = 26
+        minSdk = AppConfiguration.minSdk
     }
+    sourceSets {
+        getByName("main").java.srcDirs("build/generated/moko/androidMain/src")
+    }
+}
+
+multiplatformResources {
+    multiplatformResourcesPackage = "com.acerolla.shared_resources"
+    multiplatformResourcesClassName = "SharedResources"
 }

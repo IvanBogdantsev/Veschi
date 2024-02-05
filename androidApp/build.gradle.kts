@@ -1,3 +1,5 @@
+import com.acerolla.buildSrc.AppConfiguration
+
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
@@ -5,13 +7,13 @@ plugins {
 
 android {
     namespace = "com.acerolla.things.android"
-    compileSdk = 34
+    compileSdk = AppConfiguration.compileSdk
     defaultConfig {
         applicationId = "com.acerolla.things.android"
-        minSdk = 26
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        minSdk = AppConfiguration.minSdk
+        targetSdk = AppConfiguration.targetSdk
+        versionCode = AppConfiguration.versionCode
+        versionName = AppConfiguration.versionName
     }
     buildFeatures {
         compose = true
@@ -40,6 +42,7 @@ android {
 
 dependencies {
     implementation(projects.shared)
+    implementation(projects.core.androidDesignSystem)
     implementation(libs.compose.ui)
     implementation(libs.compose.ui.tooling.preview)
     implementation(libs.compose.material3)

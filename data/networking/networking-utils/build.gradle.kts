@@ -31,7 +31,6 @@ kotlin {
     
     sourceSets {
         commonMain.dependencies {
-            //put your multiplatform dependencies here
             implementation(projects.core.common)
             implementation(libs.ktor.core)
             implementation(libs.ktor.logging)

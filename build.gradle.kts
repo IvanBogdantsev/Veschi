@@ -7,3 +7,12 @@ plugins {
     alias(libs.plugins.kotlinCocoapods).apply(false)
     alias(libs.plugins.org.jetbrains.kotlin.jvm) apply false
 }
+
+buildscript {
+    repositories {
+        gradlePluginPortal()
+    }
+    dependencies {
+        classpath("dev.icerock.moko:resources-generator:0.23.0")
+    }
+}
