@@ -43,8 +43,10 @@ android {
 dependencies {
     implementation(projects.shared)
     implementation(projects.core.androidDesignSystem)
+    implementation(projects.androidNavigation)
     implementation(libs.compose.ui)
     implementation(libs.compose.ui.tooling.preview)
+    implementation(libs.compose.material)
     implementation(libs.compose.material3)
     implementation(libs.androidx.activity.compose)
     debugImplementation(libs.compose.ui.tooling)

@@ -5,4 +5,6 @@ import io.ktor.client.HttpClient
 interface NetworkClientProvider {
 
     fun provideBaseHttpClient(): HttpClient
+
+    fun provideJwtHttpClient(): HttpClient
 }

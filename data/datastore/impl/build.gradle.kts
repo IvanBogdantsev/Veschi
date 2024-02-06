@@ -1,3 +1,5 @@
+import com.acerolla.buildSrc.AppConfiguration
+
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
     alias(libs.plugins.androidLibrary)
@@ -6,10 +8,10 @@ plugins {
 
 android {
     namespace = "com.acerolla.impl"
-    compileSdk = 34
+    compileSdk = AppConfiguration.compileSdk
 
     defaultConfig {
-        minSdk = 26
+        minSdk = AppConfiguration.minSdk
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -35,10 +37,6 @@ android {
 
 dependencies {
 
-    implementation(libs.core.ktx)
-    implementation(libs.appcompat)
-    implementation(libs.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.test.ext.junit)
-    androidTestImplementation(libs.espresso.core)
+    implementation(projects.data.datastore.api)
+    implementation(libs.androidx.datastore)
 }
