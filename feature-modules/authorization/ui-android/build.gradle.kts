@@ -44,12 +44,15 @@ android {
 dependencies {
 
     implementation(projects.featureModules.authorization.domain.api)
+    implementation(projects.core.common)
+    implementation(projects.core.androidDesignSystem)
+    implementation(projects.shared)
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.compose.ui)
     implementation(libs.compose.ui.tooling.preview)
-    implementation(libs.compose.material3)
+    implementation(libs.compose.material)
     implementation(libs.mvi.core)
     implementation(libs.mvi.main)
     implementation(libs.mvi.logging)
