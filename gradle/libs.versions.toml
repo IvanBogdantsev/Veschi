@@ -18,6 +18,7 @@ kotlinx-serialization = "1.5.1"
 kotlinDateTimeVersion = "0.4.0"
 mviVersion = "3.0.2"
 koinVersion = "3.2.2"
+compose-material = "1.4.3"
 
 [libraries]
 
@@ -29,6 +30,7 @@ compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = 
 compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
 compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
 compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "compose-material3" }
+compose-material = { module = "androidx.compose.material:material", version.ref = "compose-material" }
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }

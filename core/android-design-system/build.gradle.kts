@@ -44,11 +44,13 @@ android {
 
 dependencies {
 
+    implementation(projects.shared)
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.compose.ui)
     implementation(libs.compose.ui.tooling.preview)
     implementation(libs.compose.material3)
+    implementation(libs.compose.material)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)

@@ -32,6 +32,7 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(projects.featureModules.authorization.domain.api)
+            implementation(projects.core.common)
             implementation(libs.mvi.core)
             implementation(libs.mvi.main)
             implementation(libs.mvi.logging)

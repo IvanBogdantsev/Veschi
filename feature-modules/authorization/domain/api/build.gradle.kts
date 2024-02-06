@@ -31,6 +31,7 @@ kotlin {
     
     sourceSets {
         commonMain.dependencies {
+            implementation(projects.core.common)
             implementation(libs.mvi.core)
             implementation(libs.mvi.main)
             implementation(libs.mvi.logging)
