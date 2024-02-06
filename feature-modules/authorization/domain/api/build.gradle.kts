@@ -1,3 +1,5 @@
+import com.acerolla.buildSrc.AppConfiguration
+
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.kotlinCocoapods)
@@ -29,7 +31,11 @@ kotlin {
     
     sourceSets {
         commonMain.dependencies {
-            //put your multiplatform dependencies here
+            implementation(libs.mvi.core)
+            implementation(libs.mvi.main)
+            implementation(libs.mvi.logging)
+            implementation(libs.mvi.coroutines)
+            implementation(libs.kotlinx.coroutines)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -39,8 +45,8 @@ kotlin {
 
 android {
     namespace = "com.acerolla.api"
-    compileSdk = 34
+    compileSdk = AppConfiguration.compileSdk
     defaultConfig {
-        minSdk = 26
+        minSdk = AppConfiguration.minSdk
     }
 }

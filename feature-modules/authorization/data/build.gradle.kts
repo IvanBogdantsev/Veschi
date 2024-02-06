@@ -1,3 +1,5 @@
+import com.acerolla.buildSrc.AppConfiguration
+
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.kotlinCocoapods)
@@ -29,7 +31,15 @@ kotlin {
     
     sourceSets {
         commonMain.dependencies {
-            //put your multiplatform dependencies here
+            implementation(projects.data.networking.authorizationApi.api)
+            implementation(projects.featureModules.authorization.domain.api)
+            implementation(libs.ktor.core)
+            implementation(libs.ktor.logging)
+            implementation(libs.ktor.serialization)
+            implementation(libs.ktor.serialization.json)
+            implementation(libs.kotlinx.coroutines)
+            implementation(libs.kotlinx.datetime)
+            implementation(libs.content.negotiation)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -39,8 +49,8 @@ kotlin {
 
 android {
     namespace = "com.acerolla.data"
-    compileSdk = 34
+    compileSdk = AppConfiguration.compileSdk
     defaultConfig {
-        minSdk = 26
+        minSdk = AppConfiguration.minSdk
     }
 }

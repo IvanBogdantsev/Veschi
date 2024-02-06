@@ -16,6 +16,8 @@ ktorVersion = "2.3.4"
 kotlinx-coroutines-cors = "1.7.1"
 kotlinx-serialization = "1.5.1"
 kotlinDateTimeVersion = "0.4.0"
+mviVersion = "3.0.2"
+koinVersion = "3.2.2"
 
 [libraries]
 
@@ -51,6 +53,17 @@ kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-
 
 # DateTime
 kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "kotlinDateTimeVersion" }
+
+# MVI
+mvi-core = { group = "com.arkivanov.mvikotlin", name = "mvikotlin", version.ref = "mviVersion" }
+mvi-main = { group = "com.arkivanov.mvikotlin", name = "mvikotlin-main", version.ref = "mviVersion" }
+mvi-logging = { group = "com.arkivanov.mvikotlin", name = "mvikotlin-logging", version.ref = "mviVersion" }
+mvi-coroutines = { group = "com.arkivanov.mvikotlin", name = "mvikotlin-extensions-coroutines", version.ref = "mviVersion" }
+
+# Koin
+koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koinVersion" }
+koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koinVersion" }
+koin-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koinVersion" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
