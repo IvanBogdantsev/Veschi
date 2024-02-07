@@ -1,11 +1,13 @@
 package com.acerolla.impl
 
 import com.acerolla.api.AuthorizationNetworkService
+import com.acerolla.api.models.SignInDto
+import com.acerolla.api.models.SignUpDto
+import com.acerolla.common.ApiResponse
+import com.acerolla.common.ErrorResponse
+import com.acerolla.common.TokenResponse
 import com.acerolla.networking_utils.NetworkClientProvider
 import com.acerolla.networking_utils.safeRequest
-import io.ktor.client.plugins.HttpSend
-import io.ktor.client.plugins.plugin
-import io.ktor.client.request.headers
 import io.ktor.client.request.url
 
 class AuthorizationNetworkServiceImpl(
@@ -16,20 +18,17 @@ class AuthorizationNetworkServiceImpl(
         networkClientProvider.provideBaseHttpClient()
     }
 
-    override suspend fun signIn() {
-        httpClient.plugin(HttpSend).intercept {  request ->
-            val originalCall = execute(request)
-            if (originalCall.response.status.value !in 100..399) {
-                execute(request)
-            } else {
-                originalCall
-            }
-        }
-        httpClient.safeRequest<String, Int> {
-            url("")
-        }
+    override suspend fun signIn(dto: SignInDto): ApiResponse<TokenResponse, ErrorResponse> {
+        return httpClient.safeRequest { url(SIGN_IN) }
+    }
+
+    override suspend fun signUp(dto: SignUpDto): ApiResponse<TokenResponse, ErrorResponse> {
+        return httpClient.safeRequest { url(SIGN_UP) }
+    }
+
+    private companion object {
+
+        const val SIGN_IN = "auth/sign_in"
+        const val SIGN_UP = "auth/sign_up"
     }
 }
-
-//override suspend fun fetchTrainingSessions(): ApiResponse<List<TrainingSessionResponse>, ErrorResponse> =
-//    httpClient.safeRequest { url(trainingsSessions) }

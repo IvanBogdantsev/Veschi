@@ -1,42 +1,49 @@
 import com.acerolla.buildSrc.AppConfiguration
 
-@Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
+    alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.kotlinCocoapods)
     alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.kotlinAndroid)
+}
+
+kotlin {
+    androidTarget {
+        compilations.all {
+            kotlinOptions {
+                jvmTarget = "1.8"
+            }
+        }
+    }
+    iosX64()
+    iosArm64()
+    iosSimulatorArm64()
+
+    cocoapods {
+        summary = "Some description for the Shared Module"
+        homepage = "Link to the Shared Module homepage"
+        version = "1.0"
+        ios.deploymentTarget = "16.0"
+        framework {
+            baseName = "impl"
+            isStatic = true
+        }
+    }
+    
+    sourceSets {
+        commonMain.dependencies {
+            implementation(projects.data.datastore.api)
+            implementation(libs.androidx.datastore.core)
+        }
+        commonTest.dependencies {
+            implementation(libs.kotlin.test)
+        }
+    }
 }
 
 android {
     namespace = "com.acerolla.impl"
     compileSdk = AppConfiguration.compileSdk
-
     defaultConfig {
         minSdk = AppConfiguration.minSdk
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles("consumer-rules.pro")
     }
-
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-}
-
-dependencies {
-
-    implementation(projects.data.datastore.api)
-    implementation(libs.androidx.datastore)
 }

@@ -39,6 +39,8 @@ kotlin {
             implementation(projects.data.networking.networkingUtils)
             implementation(projects.data.networking.authorizationApi.api)
             implementation(projects.data.networking.authorizationApi.impl)
+            implementation(projects.data.datastore.api)
+            implementation(projects.data.datastore.impl)
             implementation(projects.featureModules.authorization.data)
             implementation(projects.featureModules.authorization.domain.api)
             implementation(projects.featureModules.authorization.domain.impl)
@@ -50,6 +52,7 @@ kotlin {
             implementation(libs.kotlinx.coroutines)
             implementation(libs.kotlinx.datetime)
             implementation(libs.content.negotiation)
+            implementation(libs.androidx.datastore.core)
             api(libs.koin.core)
 
             implementation(libs.mvi.core)

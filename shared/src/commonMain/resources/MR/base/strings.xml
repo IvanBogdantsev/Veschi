@@ -25,11 +25,13 @@
     <string name="drop_pas">Сброс пароля</string>
     <string name="pass_changed">Пароль изменен</string>
     <string name="ur_pass_changed">Ваш пароль успешно изменен</string>
-    <string name="register">Зарегистрироваться</string>
+    <string name="register">Создать аккаунт</string>
     <string name="username">Имя пользователя</string>
     <string name="repeat_pass">Повторить пароль</string>
     <string name="apply_conf">Я принимаю условия и политику конфиденциальности</string>
     <string name="or">ИЛИ</string>
+    <string name="already_have_account">Уже есть аккаунт?</string>
+    <string name="no_account">Нет аккаунта?</string>
     <!--    -->
 
     <string name="lorem_ipsum_short">Lorem ipsum dolor sit amet</string>

@@ -40,9 +40,15 @@ kotlin {
             implementation(libs.kotlinx.coroutines)
             implementation(libs.kotlinx.datetime)
             implementation(libs.content.negotiation)
+            api(libs.koin.core)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
+        }
+        androidMain.dependencies {
+            implementation(libs.ktor.core)
+            implementation(libs.ktor.client.android)
+            implementation(libs.ktor.okhttp)
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.ios)

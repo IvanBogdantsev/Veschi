@@ -2,6 +2,8 @@ package com.acerolla.impl
 
 import com.acerolla.api.AuthStatePublisher
 import com.acerolla.api.AuthStore
+import com.acerolla.api.models.SignInModel
+import com.acerolla.api.models.SignUpModel
 import com.arkivanov.mvikotlin.extensions.coroutines.states
 import kotlinx.coroutines.flow.Flow
 
@@ -11,5 +13,7 @@ class AuthStatePublisherImpl(
 
     override fun publishState(): Flow<AuthStore.State> = store.states
 
-    override fun loadTrainingSessions() = store.accept(AuthStore.Intent.Load)
+    override fun signIn(model: SignInModel) = store.accept(AuthStore.Intent.SignIn(model))
+
+    override fun signUp(model: SignUpModel) = store.accept(AuthStore.Intent.SignUp(model))
 }

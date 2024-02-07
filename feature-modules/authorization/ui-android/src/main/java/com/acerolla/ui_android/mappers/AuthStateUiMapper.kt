@@ -8,6 +8,10 @@ class AuthStateUiMapper: BaseMapper<AuthStore.State, UiState> {
 
     override fun map(from: AuthStore.State): UiState {
         return UiState(
+            from.moveToSignIn,
+            from.moveToSignUp,
+            from.moveToForgotPassword,
+            from.isSuccessfullySigned,
             from.isLoading,
             from.error
         )

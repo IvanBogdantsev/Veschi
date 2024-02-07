@@ -32,7 +32,9 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(projects.data.networking.authorizationApi.api)
+            implementation(projects.data.datastore.api)
             implementation(projects.featureModules.authorization.domain.api)
+            implementation(projects.core.common)
             implementation(libs.ktor.core)
             implementation(libs.ktor.logging)
             implementation(libs.ktor.serialization)

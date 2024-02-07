@@ -17,15 +17,17 @@ kotlinx-coroutines-cors = "1.7.1"
 kotlinx-serialization = "1.5.1"
 kotlinDateTimeVersion = "0.4.0"
 mviVersion = "3.0.2"
-koinVersion = "3.2.2"
+koinVersion = "3.5.0"
 compose-material = "1.4.3"
 hilt-navigation-compose = "1.1.0"
 navigation-runtime-ktx = "2.7.6"
 navigationComposeVersion = "2.7.6"
 androidx-datastore = "1.0.0"
+androidx-datastore-core = "1.1.0-beta01"
 timber-version = "5.0.1"
-koin-android-version = "3.5.0"
-koin-androidx-compose-version = "3.5.0"
+uiTooling = "1.6.0"
+androidxLifecycle = "2.6.2"
+okhttp = "1.6.7"
 
 [libraries]
 
@@ -44,6 +46,10 @@ androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "uiTooling" }
+androidx-lifecycle-runtimeCompose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
+androidx-lifecycle-viewModelCompose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "androidxLifecycle" }
+
 
 # Ktor
 ktor-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktorVersion" }
@@ -73,8 +79,6 @@ mvi-coroutines = { group = "com.arkivanov.mvikotlin", name = "mvikotlin-extensio
 koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koinVersion" }
 koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koinVersion" }
 koin-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koinVersion" }
-koin-androidx-navigation = { group = "io.insert-koin", name = "koin-androidx-navigation", version.ref = "koin-android-version" }
-koin-androidx-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koin-androidx-compose-version" }
 
 # Navigation
 androidx-navigation-runtime-ktx = { group = "androidx.navigation", name = "navigation-runtime-ktx", version.ref = "navigation-runtime-ktx" }
@@ -83,6 +87,7 @@ navigation-compose = { group = "androidx.navigation", name = "navigation-compose
 
 # Datastore
 androidx-datastore = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "androidx-datastore" }
+androidx-datastore-core = { group = "androidx.datastore", name = "datastore-preferences-core", version.ref = "androidx-datastore-core" }
 
 # Timber
 timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber-version" }
