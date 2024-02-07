@@ -26,5 +26,6 @@ interface AuthStore: Store<AuthStore.Intent, AuthStore.State, AuthStore.Label> {
         data class SignUp(val model: SignUpModel): Intent
         data object MoveToSignIn: Intent
         data object MoveToSignUp: Intent
+        data object MoveToForgotPassword: Intent
     }
 }

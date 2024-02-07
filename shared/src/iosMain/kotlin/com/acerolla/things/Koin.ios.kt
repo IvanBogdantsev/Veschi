@@ -1,7 +1,16 @@
 package com.acerolla.things
 
+import com.acerolla.api.AuthRepository
+import com.acerolla.api.AuthStatePublisher
+import com.acerolla.api.AuthStore
+import com.acerolla.common.mappers.BaseMapper
+import com.acerolla.data.AuthRepositoryImpl
+import com.acerolla.impl.AuthStatePublisherImpl
 import com.acerolla.impl.dataStore
 import com.acerolla.things.di.initKoin
+import com.acerolla.things.uiStates.authorization.AuthStatePublisheriOS
+import com.acerolla.things.uiStates.authorization.AuthUiStateiOS
+import com.acerolla.things.uiStates.mappers.AuthUiStateToIosStateMapper
 import kotlinx.cinterop.ObjCClass
 import kotlinx.cinterop.getOriginalKotlinClass
 import org.koin.core.Koin
@@ -10,8 +19,8 @@ import org.koin.core.qualifier.named
 import org.koin.core.scope.Scope
 import org.koin.dsl.module
 
-private const val AUTHORIZATION_SCOPE_NAME = "TRAININGS_DIARY_SCOPE_NAME"
-private const val AUTHORIZATION_SCOPE_ID = "TRAININGS_DIARY_SCOPE_ID"
+private const val AUTHORIZATION_SCOPE_NAME = "AUTHORIZATION_SCOPE_NAME"
+private const val AUTHORIZATION_SCOPE_ID = "AUTHORIZATION_SCOPE_ID"
 
 fun initKoiniOS(): KoinApplication = initKoin(emptyList())
 
@@ -21,14 +30,11 @@ actual fun platformModule() = module {
 
     scope(named(AUTHORIZATION_SCOPE_NAME)) {
 
-//        scoped<TrainingsDiaryRepository> { TrainingsDiaryRepositoryImpl(get()) }
-//
-//        scoped<TrainingsDiaryStatePublisher> { TrainingsDiaryStatePublisherImpl(get()) }
-//        scoped<BaseMapper<TrainingsDiaryStore.State, TrainingsDiaryUiStateiOS>> { TrainingsDiaryUiStateToIosStateMapper() }
-//        scoped { TrainingsDiaryStatePublisheriOS(get(), get()) }
-//
-//        scoped<FetchTrainingsUseCase> { FetchTrainingsUseCaseImpl(get(), get()) }
-//        scoped { TrainingsDiaryUseCaseiOS(get()) }
+        scoped<AuthRepository> { AuthRepositoryImpl(get(), get()) }
+
+        scoped<AuthStatePublisher> { AuthStatePublisherImpl(get()) }
+        scoped<BaseMapper<AuthStore.State, AuthUiStateiOS>> { AuthUiStateToIosStateMapper() }
+        scoped { AuthStatePublisheriOS(get(), get()) }
     }
 }
 
