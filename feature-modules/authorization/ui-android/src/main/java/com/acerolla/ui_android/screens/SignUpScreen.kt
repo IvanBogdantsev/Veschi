@@ -1,5 +1,6 @@
 package com.acerolla.ui_android.screens
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -38,8 +39,10 @@ import com.acerolla.ui_android.screens.components.RoundCheckbox
 import com.acerolla.ui_android.screens.components.SignButtonsArea
 
 @Composable
-fun SignUpScreen() {
-    val context = LocalContext.current
+fun SignUpScreen(
+    onAuthBtnClick: () -> Unit,
+    onLoginClick: () -> Unit
+) {
     var username by remember { mutableStateOf(emptyString()) }
     var email by remember { mutableStateOf(emptyString()) }
     var password by remember { mutableStateOf(emptyString()) }
@@ -57,14 +60,6 @@ fun SignUpScreen() {
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(
-                text = stringResource(SharedResources.strings.welcome),
-                fontFamily = FontFamily(Font(SharedResources.fonts.Inter.regular.fontResourceId)),
-                fontSize = 12.sp,
-                color = Color(
-                    SharedResources.colors.primary2.getColor(context)
-                )
-            )
             Text(
                 modifier = Modifier
                     .padding(top = 6.dp),
@@ -124,12 +119,15 @@ fun SignUpScreen() {
             )
             AuthButton(
                 title = stringResource(id = SharedResources.strings.register),
-                onClick = {  } // TODO:
+                onClick = onAuthBtnClick
             )
             DividerArea()
             SignButtonsArea(
                 onGoogleBtnClick = {  }, // TODO:
                 onAppleBtnClick = {  }, // TODO:
+            )
+            AlreadyHaveAccount(
+                onLoginClick = onLoginClick
             )
         }
     }
@@ -162,13 +160,45 @@ private fun ConfPoliticsArea(
     }
 }
 
+@Composable
+private fun AlreadyHaveAccount(
+    onLoginClick: () -> Unit
+) {
+    Row(
+        modifier = Modifier
+            .padding(top = 20.dp)
+            .fillMaxWidth(),
+        horizontalArrangement = Arrangement.Center
+    ) {
+        Text(
+            text = stringResource(id = SharedResources.strings.already_have_account),
+            fontFamily = FontFamily(Font(SharedResources.fonts.Inter.regular.fontResourceId)),
+            fontSize = 15.sp,
+            color = Color.Black
+        )
+        Text(
+            modifier = Modifier
+                .padding(start = 10.dp)
+                .clickable {
+                    onLoginClick()
+                },
+            text = stringResource(id = SharedResources.strings.enter),
+            fontFamily = FontFamily(Font(SharedResources.fonts.Inter.regular.fontResourceId)),
+            fontSize = 15.sp,
+            color = Color(SharedResources.colors.primary.getColor(LocalContext.current))
+        )
+    }
+}
+
 @Preview
 @Composable
 fun SignUpScreen_Light_Theme_Preview() {
     ThingsAppTheme(
         darkTheme = false
     ) {
-        SignUpScreen()
+        SignUpScreen(
+            {}, {}
+        )
     }
 }
 
@@ -178,6 +208,8 @@ fun SignUpScreen_Dark_Theme_Preview() {
     ThingsAppTheme(
         darkTheme = true
     ) {
-        SignUpScreen()
+        SignUpScreen(
+            {}, {}
+        )
     }
 }

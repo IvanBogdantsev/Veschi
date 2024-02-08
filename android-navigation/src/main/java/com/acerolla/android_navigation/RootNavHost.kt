@@ -5,8 +5,8 @@ import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import com.acerolla.ui_android.AUTH_NAV_GRAPH_PATTERN
-import com.acerolla.ui_android.authGraph
+import com.acerolla.ui_android.navigation.AUTH_NAV_GRAPH_PATTERN
+import com.acerolla.ui_android.navigation.authGraph
 
 @Composable
 fun RootNavHost(startDestination: String = AUTH_NAV_GRAPH_PATTERN) {

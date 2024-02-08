@@ -39,8 +39,10 @@ import com.acerolla.ui_android.screens.components.DividerArea
 import com.acerolla.ui_android.screens.components.SignButtonsArea
 
 @Composable
-fun SignInScreen() {
-    val context = LocalContext.current
+fun SignInScreen(
+    onAuthBtnClick: () -> Unit,
+    onSignUpBtnClick: () -> Unit
+) {
     var phoneOrNumber by remember { mutableStateOf(emptyString()) }
     var password by remember { mutableStateOf(emptyString()) }
     Box(
@@ -54,14 +56,6 @@ fun SignInScreen() {
                 .padding(horizontal = HORIZONTAL_PADDING),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(
-                text = stringResource(SharedResources.strings.welcome),
-                fontFamily = FontFamily(Font(SharedResources.fonts.Inter.regular.fontResourceId)),
-                fontSize = 12.sp,
-                color = Color(
-                    SharedResources.colors.primary2.getColor(context)
-                )
-            )
             Text(
                 modifier = Modifier
                     .padding(top = 6.dp),
@@ -97,13 +91,16 @@ fun SignInScreen() {
             )
             AuthButton(
                 title = stringResource(SharedResources.strings.enter),
-                onClick = {  } // TODO:
+                onClick = onAuthBtnClick
             )
             DividerArea()
             SignButtonsArea(
                 onGoogleBtnClick = {  }, // TODO:
                 onAppleBtnClick = {  }, // TODO:
             )
+            NoAccount {
+                onSignUpBtnClick()
+            }
         }
     }
 }
@@ -135,13 +132,46 @@ private fun ForgotPassword(
     }
 }
 
+@Composable
+private fun NoAccount(
+    onRegisterClick: () -> Unit
+) {
+    Row(
+        modifier = Modifier
+            .padding(top = 20.dp)
+            .fillMaxWidth(),
+        horizontalArrangement = Arrangement.Center
+    ) {
+        Text(
+            text = stringResource(id = SharedResources.strings.no_account),
+            fontFamily = FontFamily(Font(SharedResources.fonts.Inter.regular.fontResourceId)),
+            fontSize = 15.sp,
+            color = Color.Black
+        )
+        Text(
+            modifier = Modifier
+                .padding(start = 10.dp)
+                .clickable {
+                    onRegisterClick()
+                },
+            text = stringResource(id = SharedResources.strings.register),
+            fontFamily = FontFamily(Font(SharedResources.fonts.Inter.regular.fontResourceId)),
+            fontSize = 15.sp,
+            color = Color(SharedResources.colors.primary.getColor(LocalContext.current))
+        )
+    }
+}
+
 @Preview
 @Composable
 fun SignInScreen_Light_Theme_Preview() {
     ThingsAppTheme(
         darkTheme = false
     ) {
-        SignInScreen()
+        SignInScreen(
+            onAuthBtnClick = {},
+            onSignUpBtnClick = {}
+        )
     }
 }
 
@@ -151,6 +181,9 @@ fun SignInScreen_Dark_Theme_Preview() {
     ThingsAppTheme(
         darkTheme = true
     ) {
-        SignInScreen()
+        SignInScreen(
+            onAuthBtnClick = {},
+            onSignUpBtnClick = {}
+        )
     }
 }
