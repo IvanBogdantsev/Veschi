@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.kotlinCocoapods)
     alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.serialization)
 }
 
 kotlin {
@@ -36,6 +37,9 @@ kotlin {
             implementation(libs.mvi.logging)
             implementation(libs.mvi.coroutines)
             implementation(libs.kotlinx.coroutines)
+            implementation(libs.ktor.serialization.json)
+            implementation(libs.kotlinx.serialization.json)
+            implementation(libs.content.negotiation)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

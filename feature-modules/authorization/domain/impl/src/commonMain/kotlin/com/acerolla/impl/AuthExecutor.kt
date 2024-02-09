@@ -58,6 +58,9 @@ internal class MainExecutor(
             is ApiResponse.Error.SerializationError -> {
                 dispatch(AuthStoreFactory.Message.SetSerializationError)
             }
+            is ApiResponse.Error.TimeoutError -> {
+                dispatch(AuthStoreFactory.Message.SetNetworkError)
+            }
             else -> throw IllegalStateException("No such response type")
         }
     }

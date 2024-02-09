@@ -32,6 +32,7 @@ import com.acerolla.android_design_system.HORIZONTAL_PADDING
 import com.acerolla.android_design_system.ThingsAppTheme
 import com.acerolla.android_design_system.emptyString
 import com.acerolla.android_design_system.stringResource
+import com.acerolla.api.models.SignInModel
 import com.acerolla.shared_resources.SharedResources
 import com.acerolla.ui_android.screens.components.AuthButton
 import com.acerolla.ui_android.screens.components.AuthTextInput
@@ -40,7 +41,7 @@ import com.acerolla.ui_android.screens.components.SignButtonsArea
 
 @Composable
 fun SignInScreen(
-    onAuthBtnClick: () -> Unit,
+    onAuthBtnClick: (SignInModel) -> Unit,
     onSignUpBtnClick: () -> Unit
 ) {
     var phoneOrNumber by remember { mutableStateOf(emptyString()) }
@@ -91,7 +92,9 @@ fun SignInScreen(
             )
             AuthButton(
                 title = stringResource(SharedResources.strings.enter),
-                onClick = onAuthBtnClick
+                onClick = {
+                    onAuthBtnClick(SignInModel(phoneOrNumber, password))
+                }
             )
             DividerArea()
             SignButtonsArea(

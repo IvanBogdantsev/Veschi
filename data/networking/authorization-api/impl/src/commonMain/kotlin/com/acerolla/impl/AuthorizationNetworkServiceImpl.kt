@@ -8,7 +8,11 @@ import com.acerolla.common.ErrorResponse
 import com.acerolla.common.TokenResponse
 import com.acerolla.networking_utils.NetworkClientProvider
 import com.acerolla.networking_utils.safeRequest
+import io.ktor.client.request.accept
+import io.ktor.client.request.setBody
 import io.ktor.client.request.url
+import io.ktor.http.ContentType
+import io.ktor.http.HttpMethod
 
 class AuthorizationNetworkServiceImpl(
     private val networkClientProvider: NetworkClientProvider
@@ -19,11 +23,18 @@ class AuthorizationNetworkServiceImpl(
     }
 
     override suspend fun signIn(dto: SignInDto): ApiResponse<TokenResponse, ErrorResponse> {
-        return httpClient.safeRequest { url(SIGN_IN) }
+        return httpClient.safeRequest {
+            method = HttpMethod.Post
+            setBody(dto)
+            url(SIGN_IN)
+        }
     }
 
     override suspend fun signUp(dto: SignUpDto): ApiResponse<TokenResponse, ErrorResponse> {
-        return httpClient.safeRequest { url(SIGN_UP) }
+        return httpClient.safeRequest {
+            method = HttpMethod.Post
+            setBody(dto)
+            url(SIGN_UP) }
     }
 
     private companion object {

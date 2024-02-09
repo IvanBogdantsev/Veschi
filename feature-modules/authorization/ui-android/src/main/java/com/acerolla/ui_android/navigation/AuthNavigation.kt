@@ -18,16 +18,17 @@ fun NavGraphBuilder.authGraph(
         route = AUTH_NAV_GRAPH_PATTERN
     ) {
         authRootScreen(
-            {}, {}
+            signSuccessed = signSuccessed
         )
     }
 }
 
 internal fun NavGraphBuilder.authRootScreen(
-    signSuccessed: () -> Unit,
-    onLoginRegistrationClick: () -> Unit
+    signSuccessed: () -> Unit
 ) {
     composable(AUTH_ROOT_SCREEN_PATTERN) {
-        AuthRootScreen({})
+        AuthRootScreen(
+            onSignSuccessed = signSuccessed
+        )
     }
 }
