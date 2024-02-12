@@ -13,6 +13,8 @@ import io.ktor.client.request.setBody
 import io.ktor.client.request.url
 import io.ktor.http.ContentType
 import io.ktor.http.HttpMethod
+import io.ktor.http.contentType
+import kotlinx.serialization.json.Json
 
 class AuthorizationNetworkServiceImpl(
     private val networkClientProvider: NetworkClientProvider

@@ -1,6 +1,7 @@
 package com.acerolla.ui_android.screens
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -173,6 +174,7 @@ private fun ConfPoliticsArea(
 private fun AlreadyHaveAccount(
     onLoginClick: () -> Unit
 ) {
+    val interactionSource = remember { MutableInteractionSource() }
     Row(
         modifier = Modifier
             .padding(top = 20.dp)
@@ -188,7 +190,10 @@ private fun AlreadyHaveAccount(
         Text(
             modifier = Modifier
                 .padding(start = 10.dp)
-                .clickable {
+                .clickable(
+                    interactionSource = interactionSource,
+                    indication = null
+                ) {
                     onLoginClick()
                 },
             text = stringResource(id = SharedResources.strings.enter),

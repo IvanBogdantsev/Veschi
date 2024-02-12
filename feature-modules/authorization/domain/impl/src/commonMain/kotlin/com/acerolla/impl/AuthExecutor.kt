@@ -17,9 +17,6 @@ internal class MainExecutor(
     ) = when (intent) {
         is AuthStore.Intent.SignUp -> signUp(intent.model)
         is AuthStore.Intent.SignIn -> signIn(intent.model)
-        is AuthStore.Intent.MoveToSignIn -> dispatch(AuthStoreFactory.Message.MoveToSignIn)
-        is AuthStore.Intent.MoveToSignUp -> dispatch(AuthStoreFactory.Message.MoveToSignUp)
-        is AuthStore.Intent.MoveToForgotPassword -> dispatch(AuthStoreFactory.Message.MoveToForgotPassword)
     }
 
     private suspend fun signIn(model: SignInModel) {

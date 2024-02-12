@@ -15,7 +15,9 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            ThingsAppTheme {
+            ThingsAppTheme(
+                darkTheme = false
+            ) {
                 Surface(
                     modifier = Modifier.fillMaxSize()
                 ) {

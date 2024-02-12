@@ -8,10 +8,10 @@ sealed class ApiResponse<out T, out E> {
 
         data class HttpError<E>(val code: Int, val errorBody: E?): Error<E>()
 
-        object NetworkError: Error<Nothing>()
+        data object NetworkError: Error<Nothing>()
 
-        object SerializationError: Error<Nothing>()
+        data object SerializationError: Error<Nothing>()
 
-        object TimeoutError: Error<Nothing>()
+        data object TimeoutError: Error<Nothing>()
     }
 }

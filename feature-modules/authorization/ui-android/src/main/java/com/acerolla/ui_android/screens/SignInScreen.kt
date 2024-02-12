@@ -28,16 +28,19 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.acerolla.android_design_system.HORIZONTAL_PADDING
 import com.acerolla.android_design_system.ThingsAppTheme
 import com.acerolla.android_design_system.emptyString
 import com.acerolla.android_design_system.stringResource
 import com.acerolla.api.models.SignInModel
 import com.acerolla.shared_resources.SharedResources
+import com.acerolla.ui_android.AuthViewModel
 import com.acerolla.ui_android.screens.components.AuthButton
 import com.acerolla.ui_android.screens.components.AuthTextInput
 import com.acerolla.ui_android.screens.components.DividerArea
 import com.acerolla.ui_android.screens.components.SignButtonsArea
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun SignInScreen(
@@ -139,6 +142,7 @@ private fun ForgotPassword(
 private fun NoAccount(
     onRegisterClick: () -> Unit
 ) {
+    val interactionSource = remember { MutableInteractionSource() }
     Row(
         modifier = Modifier
             .padding(top = 20.dp)
@@ -154,7 +158,10 @@ private fun NoAccount(
         Text(
             modifier = Modifier
                 .padding(start = 10.dp)
-                .clickable {
+                .clickable(
+                    interactionSource = interactionSource,
+                    indication = null
+                ) {
                     onRegisterClick()
                 },
             text = stringResource(id = SharedResources.strings.register),

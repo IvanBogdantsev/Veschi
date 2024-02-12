@@ -29,6 +29,7 @@ uiTooling = "1.6.0"
 androidxLifecycle = "2.6.2"
 okhttp = "1.6.7"
 serialization = "1.9.20"
+androidx-uiTooling = "1.6.1"
 
 [libraries]
 
@@ -92,6 +93,7 @@ androidx-datastore-core = { group = "androidx.datastore", name = "datastore-pref
 
 # Timber
 timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber-version" }
+ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "androidx-uiTooling" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

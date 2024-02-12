@@ -30,15 +30,6 @@ class AuthViewModel(
             store.states.map(stateMapper::map) bindTo (::acceptState)
         }
         binder.start()
-        moveToSignUpBtnClick()
-    }
-
-    fun moveToSignInBtnClick() {
-        store.accept(AuthStore.Intent.MoveToSignIn)
-    }
-
-    fun moveToSignUpBtnClick() {
-        store.accept(AuthStore.Intent.MoveToSignUp)
     }
 
     fun signIn(model: SignInModel) {

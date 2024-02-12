@@ -10,22 +10,24 @@ internal class AuthReducer : Reducer<AuthStore.State, AuthStoreFactory.Message> 
         msg: AuthStoreFactory.Message,
     ) = when (msg) {
         is AuthStoreFactory.Message.MoveToForgotPassword -> copy(
-            moveToForgotPassword = true,
-            moveToSignUp = false,
-            moveToSignIn = false
+            isSuccessfullySigned = false,
+            isLoading = false,
+            error = null
         )
         is AuthStoreFactory.Message.MoveToSignUp -> copy(
-            moveToSignUp = true,
-            moveToSignIn = false,
-            moveToForgotPassword = false,
+            isSuccessfullySigned = false,
+            isLoading = false,
+            error = null
         )
         is AuthStoreFactory.Message.MoveToSignIn -> copy(
-            moveToSignUp = false,
-            moveToSignIn = true,
-            moveToForgotPassword = false,
+            isSuccessfullySigned = false,
+            isLoading = false,
+            error = null
         )
         is AuthStoreFactory.Message.SuccessfullySigned -> copy(
-            isSuccessfullySigned = true
+            isSuccessfullySigned = true,
+            isLoading = false,
+            error = null
         )
         is AuthStoreFactory.Message.SetLoading -> copy(
             isSuccessfullySigned = false,

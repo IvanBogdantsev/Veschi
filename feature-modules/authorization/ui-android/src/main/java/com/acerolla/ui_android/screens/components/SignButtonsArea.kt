@@ -8,7 +8,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.acerolla.android_design_system.ThingsAppTheme
 import com.acerolla.shared_resources.SharedResources
 
 @Composable
@@ -39,5 +41,29 @@ fun SignButtonsArea(
             iconId = SharedResources.images.apple_icon.drawableResId,
             onClick = onAppleBtnClick
         )
+    }
+}
+
+@Preview
+@Composable
+private fun SignButtonsArea_Light_Theme_Preview() {
+    ThingsAppTheme(
+        darkTheme = false
+    ) {
+        SignButtonsArea(onGoogleBtnClick = { /*TODO*/ }) {
+            
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun SignButtonsArea_Dark_Theme_Preview() {
+    ThingsAppTheme(
+        darkTheme = true
+    ) {
+        SignButtonsArea(onGoogleBtnClick = { /*TODO*/ }) {
+
+        }
     }
 }
