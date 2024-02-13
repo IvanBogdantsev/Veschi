@@ -1,6 +1,7 @@
 package com.acerolla.impl
 
 import com.acerolla.api.AuthorizationNetworkService
+import com.acerolla.api.models.Secret
 import com.acerolla.api.models.SignInDto
 import com.acerolla.api.models.SignUpDto
 import com.acerolla.common.ApiResponse
@@ -8,13 +9,9 @@ import com.acerolla.common.ErrorResponse
 import com.acerolla.common.TokenResponse
 import com.acerolla.networking_utils.NetworkClientProvider
 import com.acerolla.networking_utils.safeRequest
-import io.ktor.client.request.accept
 import io.ktor.client.request.setBody
 import io.ktor.client.request.url
-import io.ktor.http.ContentType
 import io.ktor.http.HttpMethod
-import io.ktor.http.contentType
-import kotlinx.serialization.json.Json
 
 class AuthorizationNetworkServiceImpl(
     private val networkClientProvider: NetworkClientProvider
@@ -37,6 +34,13 @@ class AuthorizationNetworkServiceImpl(
             method = HttpMethod.Post
             setBody(dto)
             url(SIGN_UP) }
+    }
+
+    override suspend fun getSecret(): ApiResponse<Secret, ErrorResponse> {
+        return httpClient.safeRequest {
+            method = HttpMethod.Get
+            url("get_secret")
+        }
     }
 
     private companion object {

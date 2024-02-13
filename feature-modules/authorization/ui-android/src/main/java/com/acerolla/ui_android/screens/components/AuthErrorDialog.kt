@@ -89,6 +89,7 @@ fun AuthErrorDialog(
                     )
                     Text(
                         modifier = Modifier
+                            .padding(top = 15.dp)
                             .padding(vertical = 13.dp)
                             .clickable(
                                 interactionSource = interactionSource,
