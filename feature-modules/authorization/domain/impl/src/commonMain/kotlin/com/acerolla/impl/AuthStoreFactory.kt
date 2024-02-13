@@ -26,9 +26,6 @@ class AuthStoreFactory(
 
 
     sealed interface Message {
-        data object MoveToSignIn: Message
-        data object MoveToSignUp: Message
-        data object MoveToForgotPassword: Message
         data class SuccessfullySigned(val response: TokenResponse): Message
         data object SetLoading: Message
         data class SetHttpError(val error: ApiResponse.Error.HttpError<ErrorResponse>): Message

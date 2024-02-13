@@ -21,6 +21,10 @@ class AuthorizationNetworkServiceImpl(
         networkClientProvider.provideBaseHttpClient()
     }
 
+    private val jwtHttpClient by lazy(LazyThreadSafetyMode.SYNCHRONIZED) {
+        networkClientProvider.provideJwtHttpClient()
+    }
+
     override suspend fun signIn(dto: SignInDto): ApiResponse<TokenResponse, ErrorResponse> {
         return httpClient.safeRequest {
             method = HttpMethod.Post
@@ -37,7 +41,7 @@ class AuthorizationNetworkServiceImpl(
     }
 
     override suspend fun getSecret(): ApiResponse<Secret, ErrorResponse> {
-        return httpClient.safeRequest {
+        return jwtHttpClient.safeRequest {
             method = HttpMethod.Get
             url("get_secret")
         }

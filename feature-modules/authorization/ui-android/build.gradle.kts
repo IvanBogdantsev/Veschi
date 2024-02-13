@@ -43,6 +43,7 @@ android {
 
 dependencies {
 
+    implementation(projects.data.networking.authorizationApi.api) // for tests
     implementation(projects.featureModules.authorization.domain.api)
     implementation(projects.core.common)
     implementation(projects.core.androidDesignSystem)

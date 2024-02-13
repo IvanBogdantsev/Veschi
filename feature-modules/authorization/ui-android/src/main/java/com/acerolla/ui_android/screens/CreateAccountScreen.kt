@@ -149,21 +149,21 @@ fun CreateAccountScreen(
                 }
             }
         }
-        DialogProgress(
-            shouldShow = showProgress,
-            dismissOnBackPressed = false,
-            dismissOnClickOutside = false
-        )
-        AuthErrorDialog(
-            shouldShow = showError,
-            msg = screenState.value.error?.body?.message,
-            dismissOnBackPressed = true,
-            dismissOnClickOutside = true,
-            onDismissClicked = {
-                showError = false
-            }
-        )
     }
+    DialogProgress(
+        shouldShow = showProgress,
+        dismissOnBackPressed = false,
+        dismissOnClickOutside = false
+    )
+    AuthErrorDialog(
+        shouldShow = showError,
+        msg = screenState.value.error?.body?.message,
+        dismissOnBackPressed = true,
+        dismissOnClickOutside = true,
+        onDismissClicked = {
+            showError = false
+        }
+    )
 }
 
 @Composable

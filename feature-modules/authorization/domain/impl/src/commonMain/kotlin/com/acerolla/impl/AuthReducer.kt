@@ -9,21 +9,6 @@ internal class AuthReducer : Reducer<AuthStore.State, AuthStoreFactory.Message> 
     override fun AuthStore.State.reduce(
         msg: AuthStoreFactory.Message,
     ) = when (msg) {
-        is AuthStoreFactory.Message.MoveToForgotPassword -> copy(
-            isSuccessfullySigned = false,
-            isLoading = false,
-            error = null
-        )
-        is AuthStoreFactory.Message.MoveToSignUp -> copy(
-            isSuccessfullySigned = false,
-            isLoading = false,
-            error = null
-        )
-        is AuthStoreFactory.Message.MoveToSignIn -> copy(
-            isSuccessfullySigned = false,
-            isLoading = false,
-            error = null
-        )
         is AuthStoreFactory.Message.SuccessfullySigned -> copy(
             isSuccessfullySigned = true,
             isLoading = false,
