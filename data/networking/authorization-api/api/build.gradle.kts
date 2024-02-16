@@ -1,7 +1,10 @@
+import com.acerolla.buildSrc.AppConfiguration
+
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.kotlinCocoapods)
     alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.serialization)
 }
 
 kotlin {
@@ -30,6 +33,10 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(projects.core.common)
+            implementation(libs.ktor.serialization)
+            implementation(libs.ktor.serialization.json)
+            implementation(libs.kotlinx.serialization.json)
+            implementation(libs.kotlinx.coroutines)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -39,8 +46,8 @@ kotlin {
 
 android {
     namespace = "com.acerolla.api"
-    compileSdk = 34
+    compileSdk = AppConfiguration.compileSdk
     defaultConfig {
-        minSdk = 26
+        minSdk = AppConfiguration.minSdk
     }
 }

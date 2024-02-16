@@ -16,10 +16,4 @@ class AuthStatePublisherImpl(
     override fun signIn(model: SignInModel) = store.accept(AuthStore.Intent.SignIn(model))
 
     override fun signUp(model: SignUpModel) = store.accept(AuthStore.Intent.SignUp(model))
-
-    override fun moveToSignIn() = store.accept(AuthStore.Intent.MoveToSignIn)
-
-    override fun moveToSignUp() = store.accept(AuthStore.Intent.MoveToSignUp)
-
-    override fun moveToForgotPassword() = store.accept(AuthStore.Intent.MoveToForgotPassword)
 }

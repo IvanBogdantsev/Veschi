@@ -10,6 +10,8 @@ import com.acerolla.impl.AuthorizationNetworkServiceImpl
 import com.acerolla.impl.TokenManagerImpl
 import com.acerolla.networking_utils.BaseNetworkHttpClientProvider
 import com.acerolla.networking_utils.NetworkClientProvider
+import com.acerolla.networking_utils.jwt.JwtAuthManager
+import com.acerolla.networking_utils.jwt.JwtAuthManagerImpl
 import com.acerolla.things.platformModule
 import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.arkivanov.mvikotlin.logging.logger.Logger
@@ -30,6 +32,7 @@ private fun coreModule() = module {
 
     single<TokenManager> { TokenManagerImpl(get()) }
     single<NetworkClientProvider> { BaseNetworkHttpClientProvider(get()) }
+    single<JwtAuthManager> { JwtAuthManagerImpl(get()) }
 
     /** Authorization Feature Dependencies */
     single<AuthorizationNetworkService> { AuthorizationNetworkServiceImpl(get()) }

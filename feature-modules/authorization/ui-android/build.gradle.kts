@@ -43,6 +43,7 @@ android {
 
 dependencies {
 
+    implementation(projects.data.networking.authorizationApi.api) // for tests
     implementation(projects.featureModules.authorization.domain.api)
     implementation(projects.core.common)
     implementation(projects.core.androidDesignSystem)
@@ -53,6 +54,7 @@ dependencies {
     implementation(libs.compose.ui)
     implementation(libs.compose.ui.tooling.preview)
     implementation(libs.compose.material)
+    implementation(libs.compose.material3)
     implementation(libs.androidx.lifecycle.runtimeCompose)
     implementation(libs.androidx.lifecycle.viewModelCompose)
     implementation(libs.mvi.core)
@@ -65,6 +67,7 @@ dependencies {
     implementation(libs.navigation.compose)
     implementation(libs.koin.android)
     implementation(libs.koin.compose)
+    implementation(libs.timber)
     debugImplementation(libs.androidx.ui.tooling)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)

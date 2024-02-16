@@ -11,10 +11,4 @@ interface AuthStatePublisher {
     fun signIn(model: SignInModel)
 
     fun signUp(model: SignUpModel)
-
-    fun moveToSignIn()
-
-    fun moveToSignUp()
-
-    fun moveToForgotPassword()
 }

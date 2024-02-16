@@ -12,7 +12,7 @@ androidx-test-ext-junit = "1.1.5"
 espresso-core = "3.5.1"
 appcompat = "1.6.1"
 material = "1.11.0"
-ktorVersion = "2.3.4"
+ktorVersion = "2.3.8"
 kotlinx-coroutines-cors = "1.7.1"
 kotlinx-serialization = "1.5.1"
 kotlinDateTimeVersion = "0.4.0"
@@ -28,6 +28,8 @@ timber-version = "5.0.1"
 uiTooling = "1.6.0"
 androidxLifecycle = "2.6.2"
 okhttp = "1.6.7"
+serialization = "1.9.20"
+androidx-uiTooling = "1.6.1"
 
 [libraries]
 
@@ -91,6 +93,7 @@ androidx-datastore-core = { group = "androidx.datastore", name = "datastore-pref
 
 # Timber
 timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber-version" }
+ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "androidx-uiTooling" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -99,3 +102,4 @@ kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinCocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
 org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "org-jetbrains-kotlin-jvm" }
+serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "serialization" }
