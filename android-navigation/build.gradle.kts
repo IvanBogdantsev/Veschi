@@ -43,7 +43,11 @@ android {
 
 dependencies {
 
+    implementation(projects.shared)
     implementation(projects.featureModules.authorization.uiAndroid)
+    implementation(projects.featureModules.things.uiAndroid)
+    implementation(projects.featureModules.profile.uiAndroid)
+    implementation(projects.featureModules.addThing.uiAndroid)
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
