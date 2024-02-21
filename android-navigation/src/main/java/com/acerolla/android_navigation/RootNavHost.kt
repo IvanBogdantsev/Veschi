@@ -4,14 +4,18 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.acerolla.ui_android.navigation.ADD_THING_NAV_GRAPH_PATTERN
 import com.acerolla.ui_android.navigation.AUTH_NAV_GRAPH_PATTERN
-import com.acerolla.ui_android.navigation.ThingsNavGraphPattern
+import com.acerolla.ui_android.navigation.PROFILE_NAV_GRAPH_PATTERN
+import com.acerolla.ui_android.navigation.THINGS_NAV_GRAPH_PATTERN
 import com.acerolla.ui_android.navigation.authGraph
-import com.acerolla.ui_android.navigation.thingsGraph
 
 @Composable
-fun RootNavHost(startDestination: String = AUTH_NAV_GRAPH_PATTERN) {
+fun RootNavHost(
+    startDestination: String = AUTH_NAV_GRAPH_PATTERN
+) {
     val rootNavController = rememberNavController()
     NavHost(
         navController = rootNavController,
@@ -20,19 +24,27 @@ fun RootNavHost(startDestination: String = AUTH_NAV_GRAPH_PATTERN) {
         authGraph(
             navController = rootNavController,
             signSuccessed = {
-                rootNavController.navigateToThingsGraph()
+                rootNavController.navigate(APP_BOTTOM_NAV_HOST_SCREEN)
             }
         )
-        thingsGraph {
-            rootNavController.navigateToAuthGraph()
+        composable(APP_BOTTOM_NAV_HOST_SCREEN) {
+            AppBottomNavHost()
         }
     }
 }
 
-fun NavController.navigateToAuthGraph(navOptions: NavOptions? = null) {
+internal fun NavController.navigateToAuthGraph(navOptions: NavOptions? = null) {
     this.navigate(AUTH_NAV_GRAPH_PATTERN, navOptions)
 }
 
-fun NavController.navigateToThingsGraph(navOptions: NavOptions? = null) {
-    this.navigate(ThingsNavGraphPattern, navOptions)
+internal fun NavController.navigateToThingsGraph(navOptions: NavOptions? = null) {
+    this.navigate(THINGS_NAV_GRAPH_PATTERN, navOptions)
+}
+
+internal fun NavController.navigateToProfileGraph(navOptions: NavOptions? = null) {
+    this.navigate(PROFILE_NAV_GRAPH_PATTERN, navOptions)
+}
+
+internal fun NavController.navigateToAddThingGraph(navOptions: NavOptions? = null) {
+    this.navigate(ADD_THING_NAV_GRAPH_PATTERN, navOptions)
 }
