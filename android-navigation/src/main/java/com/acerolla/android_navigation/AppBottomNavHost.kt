@@ -31,20 +31,19 @@ internal const val APP_BOTTOM_NAV_HOST_SCREEN = "APP_BOTTOM_NAV_HOST_SCREEN"
 
 @Composable
 fun AppBottomNavHost(
-    startDestination: String = THINGS_NAV_GRAPH_PATTERN
+    startDestination: String = THINGS_NAV_GRAPH_PATTERN,
+    onLogoutClick: () -> Unit
 ) {
     val navController = rememberNavController()
     Scaffold(
         bottomBar = { BottomNavMenu(navController) }
     ) { innerPadding ->
         NavHost(navController, startDestination = startDestination, Modifier.padding(innerPadding)) {
-            thingsGraph(
-                onExitClick = {
-                    navController.navigateToAuthGraph()
-                }
-            )
+            thingsGraph()
             addThingGraph()
-            profileGraph()
+            profileGraph(
+                onExitClick = onLogoutClick
+            )
         }
     }
 }

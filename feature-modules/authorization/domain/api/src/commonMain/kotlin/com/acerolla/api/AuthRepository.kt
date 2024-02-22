@@ -13,4 +13,6 @@ interface AuthRepository {
     suspend fun signIn(signInModel: SignInModel): ApiResponse<TokenResponse, ErrorResponse>
 
     suspend fun saveTokens(tokens: TokenResponse)
+
+    suspend fun markUserAuthorized()
 }

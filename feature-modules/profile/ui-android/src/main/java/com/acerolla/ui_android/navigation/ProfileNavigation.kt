@@ -8,17 +8,25 @@ import com.acerolla.ui_android.screens.ProfileScreen
 const val PROFILE_NAV_GRAPH_PATTERN = "PROFILE_NAV_GRAPH_PATTERN"
 internal const val PROFILE_SCREEN_PATTERN = "PROFILE_SCREEN_PATTERN"
 
-fun NavGraphBuilder.profileGraph() {
+fun NavGraphBuilder.profileGraph(
+    onExitClick: () -> Unit
+) {
     navigation(
         startDestination = PROFILE_SCREEN_PATTERN,
         route = PROFILE_NAV_GRAPH_PATTERN
     ) {
-        profileScreen()
+        profileScreen(
+            onLogoutClick = onExitClick
+        )
     }
 }
 
-internal fun NavGraphBuilder.profileScreen() {
+internal fun NavGraphBuilder.profileScreen(
+    onLogoutClick: () -> Unit
+) {
     composable(PROFILE_SCREEN_PATTERN) {
-        ProfileScreen()
+        ProfileScreen(
+            onExitAppClick = onLogoutClick
+        )
     }
 }

@@ -44,6 +44,8 @@ android {
 dependencies {
 
     implementation(projects.shared)
+    implementation(projects.data.datastore.api)
+    implementation(projects.core.androidDesignSystem)
     implementation(projects.featureModules.authorization.uiAndroid)
     implementation(projects.featureModules.things.uiAndroid)
     implementation(projects.featureModules.profile.uiAndroid)
@@ -57,6 +59,8 @@ dependencies {
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.androidx.navigation.runtime.ktx)
     implementation(libs.navigation.compose)
+    implementation(libs.koin.android)
+    implementation(libs.koin.compose)
     implementation(libs.timber)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)

@@ -43,6 +43,8 @@ android {
 
 dependencies {
 
+    implementation(projects.data.networking.authorizationApi.api) // for tests
+    implementation(projects.data.datastore.api) // for tests
     implementation(projects.featureModules.profile.domain.api)
     implementation(projects.core.common)
     implementation(projects.core.androidDesignSystem)
