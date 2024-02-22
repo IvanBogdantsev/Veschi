@@ -9,6 +9,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.acerolla.ui_android.screens.components.MapBoxMap
 
 @Composable
 fun ThingsScreen() {
@@ -23,8 +24,9 @@ fun ThingsScreen() {
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(
-                text = "Things Map"
+            MapBoxMap(
+                modifier = Modifier
+                    .fillMaxSize()
             )
         }
     }
