@@ -24,6 +24,7 @@ internal class MainExecutor(
         when(val response = repository.signIn(model)) {
             is ApiResponse.Success -> {
                 repository.saveTokens(response.body)
+                repository.markUserAuthorized()
                 dispatch(AuthStoreFactory.Message.SuccessfullySigned(response.body))
             }
             is ApiResponse.Error.HttpError -> {
@@ -44,6 +45,7 @@ internal class MainExecutor(
         when(val response = repository.signUp(model)) {
             is ApiResponse.Success -> {
                 repository.saveTokens(response.body)
+                repository.markUserAuthorized()
                 dispatch(AuthStoreFactory.Message.SuccessfullySigned(response.body))
             }
             is ApiResponse.Error.HttpError -> {

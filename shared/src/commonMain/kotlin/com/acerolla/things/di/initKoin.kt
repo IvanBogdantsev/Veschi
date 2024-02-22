@@ -1,10 +1,12 @@
 package com.acerolla.things.di
 
 import com.acerolla.api.AuthRepository
+import com.acerolla.api.AuthStatusChecker
 import com.acerolla.api.AuthStore
 import com.acerolla.api.AuthorizationNetworkService
 import com.acerolla.api.TokenManager
 import com.acerolla.data.AuthRepositoryImpl
+import com.acerolla.impl.AuthStatusCheckerImpl
 import com.acerolla.impl.AuthStoreFactory
 import com.acerolla.impl.AuthorizationNetworkServiceImpl
 import com.acerolla.impl.TokenManagerImpl
@@ -30,13 +32,12 @@ fun initKoin(additionalModules: List<Module>): KoinApplication {
 
 private fun coreModule() = module {
 
-    single<TokenManager> { TokenManagerImpl(get()) }
     single<NetworkClientProvider> { BaseNetworkHttpClientProvider(get()) }
     single<JwtAuthManager> { JwtAuthManagerImpl(get()) }
 
     /** Authorization Feature Dependencies */
     single<AuthorizationNetworkService> { AuthorizationNetworkServiceImpl(get()) }
-    single<AuthRepository> { AuthRepositoryImpl(get(), get()) }
+    single<AuthRepository> { AuthRepositoryImpl(get(), get(), get()) }
     factory<AuthStore> {
         AuthStoreFactory(
             storeFactory = get(),
@@ -51,4 +52,8 @@ private fun coreModule() = module {
         }
         LoggingStoreFactory(DefaultStoreFactory(), logger = logger)
     }
+
+    /** Datastore */
+    single<TokenManager> { TokenManagerImpl(get()) }
+    single<AuthStatusChecker> { AuthStatusCheckerImpl(get()) }
 }
