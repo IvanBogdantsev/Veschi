@@ -42,6 +42,7 @@ kotlin {
             implementation(libs.kotlinx.datetime)
             implementation(libs.content.negotiation)
             implementation(libs.kotlinx.serialization.json)
+            implementation(libs.logger.kermit)
             api(libs.koin.core)
         }
         commonTest.dependencies {

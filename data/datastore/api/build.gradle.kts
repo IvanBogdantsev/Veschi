@@ -32,6 +32,7 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(libs.kotlinx.coroutines)
+            implementation(libs.logger.kermit)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

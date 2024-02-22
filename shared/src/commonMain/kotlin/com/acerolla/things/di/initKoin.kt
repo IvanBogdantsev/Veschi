@@ -47,7 +47,7 @@ private fun coreModule() = module {
     factory<StoreFactory> {
         val logger = object : Logger {
             override fun log(text: String) {
-                // TODO: add Logger
+                co.touchlab.kermit.Logger.withTag("AuthStoreFactory").d(text)
             }
         }
         LoggingStoreFactory(DefaultStoreFactory(), logger = logger)

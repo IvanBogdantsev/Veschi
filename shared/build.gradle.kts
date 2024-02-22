@@ -45,6 +45,7 @@ kotlin {
             implementation(projects.featureModules.authorization.domain.api)
             implementation(projects.featureModules.authorization.domain.impl)
             implementation(projects.core.common)
+            implementation(libs.logger.kermit)
             implementation(libs.ktor.core)
             implementation(libs.ktor.logging)
             implementation(libs.ktor.serialization)
