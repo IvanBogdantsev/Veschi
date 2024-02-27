@@ -32,6 +32,10 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(projects.featureModules.things.domain.api)
+            implementation(projects.data.networking.thingsApi.api)
+            implementation(projects.core.common)
+            implementation(libs.kotlinx.coroutines)
+            implementation(libs.logger.kermit)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

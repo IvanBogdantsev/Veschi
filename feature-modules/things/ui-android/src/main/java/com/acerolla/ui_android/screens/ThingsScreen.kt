@@ -9,10 +9,15 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.acerolla.ui_android.ThingsViewModel
 import com.acerolla.ui_android.screens.components.MapBoxMap
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun ThingsScreen() {
+    val vm = koinViewModel<ThingsViewModel>()
+    vm.screenState.collectAsStateWithLifecycle()
     Scaffold(
         modifier = Modifier
             .fillMaxSize()

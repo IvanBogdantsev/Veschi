@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.kotlinCocoapods)
     alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.serialization)
 }
 
 kotlin {
@@ -32,12 +33,12 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(projects.core.common)
-            implementation(libs.mvi.core)
-            implementation(libs.mvi.main)
-            implementation(libs.mvi.logging)
-            implementation(libs.mvi.coroutines)
+            implementation(libs.ktor.serialization)
+            implementation(libs.ktor.serialization.json)
+            implementation(libs.kotlinx.serialization.json)
             implementation(libs.kotlinx.coroutines)
             implementation(libs.logger.kermit)
+            api(libs.koin.core)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

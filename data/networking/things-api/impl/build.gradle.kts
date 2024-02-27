@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.kotlinCocoapods)
     alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.serialization)
 }
 
 kotlin {
@@ -24,20 +25,26 @@ kotlin {
         version = "1.0"
         ios.deploymentTarget = "16.0"
         framework {
-            baseName = "api"
+            baseName = "impl"
             isStatic = true
         }
     }
     
     sourceSets {
         commonMain.dependencies {
+            implementation(projects.data.networking.thingsApi.api)
+            implementation(projects.data.networking.networkingUtils)
             implementation(projects.core.common)
-            implementation(libs.mvi.core)
-            implementation(libs.mvi.main)
-            implementation(libs.mvi.logging)
-            implementation(libs.mvi.coroutines)
+            implementation(libs.ktor.core)
+            implementation(libs.ktor.logging)
+            implementation(libs.ktor.serialization)
+            implementation(libs.ktor.serialization.json)
+            implementation(libs.kotlinx.serialization.json)
             implementation(libs.kotlinx.coroutines)
+            implementation(libs.kotlinx.datetime)
+            implementation(libs.content.negotiation)
             implementation(libs.logger.kermit)
+            api(libs.koin.core)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -46,7 +53,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.acerolla.api"
+    namespace = "com.acerolla.impl"
     compileSdk = AppConfiguration.compileSdk
     defaultConfig {
         minSdk = AppConfiguration.minSdk

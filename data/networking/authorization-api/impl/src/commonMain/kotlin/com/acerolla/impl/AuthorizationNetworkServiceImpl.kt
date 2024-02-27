@@ -37,7 +37,8 @@ class AuthorizationNetworkServiceImpl(
         return httpClient.safeRequest {
             method = HttpMethod.Post
             setBody(dto)
-            url(SIGN_UP) }
+            url(SIGN_UP)
+        }
     }
 
     override suspend fun getSecret(): ApiResponse<Secret, ErrorResponse> {

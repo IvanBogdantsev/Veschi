@@ -37,6 +37,15 @@ fun MapBoxMap(
             }
         },
         update = { mapView ->
+
+            val mapBoxMap = mapView.getMapboxMap()
+            val cameraOptions = CameraOptions.Builder()
+                .zoom(mapBoxMap.cameraState.zoom)
+                .center(mapBoxMap.cameraState.center)
+                .build()
+            val bbox = mapBoxMap.coordinateBoundsForCamera(cameraOptions)
+
+
             if (point != null) {
                 pointAnnotationManager?.let {
                     it.deleteAll()

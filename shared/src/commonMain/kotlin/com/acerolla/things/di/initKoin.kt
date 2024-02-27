@@ -4,11 +4,24 @@ import com.acerolla.api.AuthRepository
 import com.acerolla.api.AuthStatusChecker
 import com.acerolla.api.AuthStore
 import com.acerolla.api.AuthorizationNetworkService
+import com.acerolla.api.StreetObjectsRepository
+import com.acerolla.api.ThingsNetworkService
+import com.acerolla.api.ThingsStore
 import com.acerolla.api.TokenManager
+import com.acerolla.api.models.StreetObject
+import com.acerolla.api.models.StreetObjectDto
+import com.acerolla.api.models.StreetObjectResponse
+import com.acerolla.api.models.StreetObjectsForCoordinate
+import com.acerolla.common.mappers.BaseApiResponseMapper
 import com.acerolla.data.AuthRepositoryImpl
+import com.acerolla.data.StreetObjectsRepositoryImpl
+import com.acerolla.data.mappers.StreetObjectDtoToDomainModelMapper
+import com.acerolla.data.mappers.StreetObjectResponseDtoToDomainModelMapper
 import com.acerolla.impl.AuthStatusCheckerImpl
 import com.acerolla.impl.AuthStoreFactory
 import com.acerolla.impl.AuthorizationNetworkServiceImpl
+import com.acerolla.impl.ThingsNetworkServiceImpl
+import com.acerolla.impl.ThingsStoreFactory
 import com.acerolla.impl.TokenManagerImpl
 import com.acerolla.networking_utils.BaseNetworkHttpClientProvider
 import com.acerolla.networking_utils.NetworkClientProvider
@@ -32,8 +45,13 @@ fun initKoin(additionalModules: List<Module>): KoinApplication {
 
 private fun coreModule() = module {
 
+    /** Core dependencies */
     single<NetworkClientProvider> { BaseNetworkHttpClientProvider(get()) }
     single<JwtAuthManager> { JwtAuthManagerImpl(get()) }
+
+    /** Datastore */
+    single<TokenManager> { TokenManagerImpl(get()) }
+    single<AuthStatusChecker> { AuthStatusCheckerImpl(get()) }
 
     /** Authorization Feature Dependencies */
     single<AuthorizationNetworkService> { AuthorizationNetworkServiceImpl(get()) }
@@ -53,7 +71,23 @@ private fun coreModule() = module {
         LoggingStoreFactory(DefaultStoreFactory(), logger = logger)
     }
 
-    /** Datastore */
-    single<TokenManager> { TokenManagerImpl(get()) }
-    single<AuthStatusChecker> { AuthStatusCheckerImpl(get()) }
+    /** Things Feature Dependencies */
+    single<ThingsNetworkService> { ThingsNetworkServiceImpl(get()) }
+    single<BaseApiResponseMapper<StreetObjectResponse, StreetObjectsForCoordinate>> { StreetObjectResponseDtoToDomainModelMapper() }
+    single<BaseApiResponseMapper<StreetObjectDto, StreetObject>> { StreetObjectDtoToDomainModelMapper() }
+    single<StreetObjectsRepository> { StreetObjectsRepositoryImpl(get(), get(), get()) }
+    factory<ThingsStore> {
+        ThingsStoreFactory(
+            storeFactory = get(),
+            repository = get()
+        ).create()
+    }
+    factory<StoreFactory> {
+        val logger = object : Logger {
+            override fun log(text: String) {
+                co.touchlab.kermit.Logger.withTag("ThingsStoreFactory").d(text)
+            }
+        }
+        LoggingStoreFactory(DefaultStoreFactory(), logger = logger)
+    }
 }
