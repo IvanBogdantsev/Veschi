@@ -1,66 +1,51 @@
 package com.acerolla.ui_android.screens.components
 
+import android.widget.Toast
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.viewinterop.AndroidView
-import androidx.compose.ui.viewinterop.NoOpUpdate
+import androidx.core.graphics.drawable.toBitmap
 import com.acerolla.android_design_system.ThingsAppTheme
+import com.acerolla.api.models.StreetObject
+import com.acerolla.shared_resources.SharedResources
 import com.mapbox.geojson.Point
-import com.mapbox.maps.CameraOptions
-import com.mapbox.maps.MapView
-import com.mapbox.maps.Style
-import com.mapbox.maps.plugin.animation.flyTo
-import com.mapbox.maps.plugin.annotation.annotations
-import com.mapbox.maps.plugin.annotation.generated.PointAnnotationManager
+import com.mapbox.maps.MapboxExperimental
+import com.mapbox.maps.extension.compose.MapboxMap
+import com.mapbox.maps.extension.compose.annotation.generated.PointAnnotationGroup
 import com.mapbox.maps.plugin.annotation.generated.PointAnnotationOptions
-import com.mapbox.maps.plugin.annotation.generated.createPointAnnotationManager
 
+@OptIn(MapboxExperimental::class)
 @Composable
 fun MapBoxMap(
     modifier: Modifier = Modifier,
-    point: Point? = null
+    mapPoints: List<StreetObject> = emptyList()
 ) {
-    var pointAnnotationManager: PointAnnotationManager? by remember {
-        mutableStateOf(null)
-    }
-    AndroidView(
-        factory = {
-            MapView(it).also { mapView ->
-                mapView.getMapboxMap().loadStyleUri(Style.TRAFFIC_DAY)
-                val annotationApi = mapView.annotations
-                pointAnnotationManager = annotationApi.createPointAnnotationManager()
-            }
-        },
-        update = { mapView ->
-
-            val mapBoxMap = mapView.getMapboxMap()
-            val cameraOptions = CameraOptions.Builder()
-                .zoom(mapBoxMap.cameraState.zoom)
-                .center(mapBoxMap.cameraState.center)
-                .build()
-            val bbox = mapBoxMap.coordinateBoundsForCamera(cameraOptions)
-
-
-            if (point != null) {
-                pointAnnotationManager?.let {
-                    it.deleteAll()
-                    val pointAnnotationOptions = PointAnnotationOptions()
-                        .withPoint(point)
-
-                    it.create(pointAnnotationOptions)
-                    mapView.getMapboxMap()
-                        .flyTo(CameraOptions.Builder().zoom(16.0).center(point).build())
+    val context = LocalContext.current
+    val dr = SharedResources.images.street_object_marker.getDrawable(context)?.toBitmap()!!
+    MapboxMap(modifier = modifier.fillMaxSize()) {
+        PointAnnotationGroup(
+            annotations = mapPoints
+                .map {
+                    Point.fromLngLat(it.geometry.longitude, it.geometry.latitude)
                 }
+                .map {
+                    PointAnnotationOptions()
+                        .withPoint(it)
+                        .withIconImage(dr)
+                },
+            onClick = {
+                Toast.makeText(
+                    context,
+                    "Clicked on Circle Annotation Cluster item: $it",
+                    Toast.LENGTH_SHORT
+                ).show()
+                true
             }
-            NoOpUpdate
-        },
-        modifier = modifier
-    )
+        )
+    }
+
 }
 
 @Preview
@@ -71,7 +56,7 @@ private fun MapBoxMap_Light_Theme_Preview() {
     ) {
         MapBoxMap(
             modifier = Modifier,
-            point = null
+            mapPoints = emptyList()
         )
     }
 }
@@ -84,7 +69,7 @@ private fun MapBoxMap_Dark_Theme_Preview() {
     ) {
         MapBoxMap(
             modifier = Modifier,
-            point = null
+            mapPoints = emptyList()
         )
     }
 }

@@ -8,4 +8,6 @@ interface ThingsStatePublisher {
     fun publishState(): Flow<ThingsStore.State>
 
     fun getStreetObjectsForCoordinates(northwest: CoordinatePoint, southwest: CoordinatePoint)
+
+    fun getAllStreetObjects()
 }

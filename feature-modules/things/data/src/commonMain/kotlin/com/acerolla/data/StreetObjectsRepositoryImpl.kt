@@ -51,4 +51,15 @@ class StreetObjectsRepositoryImpl(
     override suspend fun addStreetObject(obj: NewStreetObject): ApiResponse<StreetObject, ErrorResponse> {
         return streetObjectDtoToDomainMapper.map(thingsNetworkService.addStreetObject(obj.toDto()))
     }
+
+    override suspend fun getAllStreetObjects(): ApiResponse<StreetObjectsForCoordinate, ErrorResponse> {
+        // FIXME: Move logic to mapper
+        return when(val from = thingsNetworkService.getAllStreetObjects()) {
+            is ApiResponse.Success -> ApiResponse.Success(from.body.toDomainModel())
+            is ApiResponse.Error.HttpError -> ApiResponse.Error.HttpError(from.code, from.errorBody)
+            is ApiResponse.Error.NetworkError -> ApiResponse.Error.NetworkError
+            is ApiResponse.Error.SerializationError -> ApiResponse.Error.SerializationError
+            is ApiResponse.Error.TimeoutError -> ApiResponse.Error.TimeoutError
+        }
+    }
 }

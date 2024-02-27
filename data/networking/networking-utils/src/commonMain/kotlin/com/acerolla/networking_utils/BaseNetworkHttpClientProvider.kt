@@ -34,7 +34,7 @@ class BaseNetworkHttpClientProvider(
 
     private val baseHttpClient: HttpClient = HttpClient {
         install(HttpTimeout) {
-            requestTimeoutMillis = 10_000
+            requestTimeoutMillis = 20_000
         }
         install(ContentNegotiation) {
             json(Json {

@@ -18,4 +18,9 @@ class ThingsStatePublisherImpl(
     ) {
         store.accept(ThingsStore.Intent.GetStreetObjectsForCoordinates(northwest, southwest))
     }
+
+    override fun getAllStreetObjects() {
+
+        store.accept(ThingsStore.Intent.GetAllStreetObjects)
+    }
 }

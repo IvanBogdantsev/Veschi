@@ -18,6 +18,7 @@ internal class ThingsExecutor(
         is ThingsStore.Intent.GetStreetObjectsForCoordinates -> {
             getStreetObjectsForCoordinates(intent.northwest, intent.southwest)
         }
+        is ThingsStore.Intent.GetAllStreetObjects -> getAllStreetObjects()
     }
 
     private suspend fun getStreetObjectsForCoordinates(
@@ -25,8 +26,26 @@ internal class ThingsExecutor(
         southwest: CoordinatePoint
     ) {
         dispatch(ThingsStoreFactory.Message.SetLoading)
-        co.touchlab.kermit.Logger.i("getStreetObjectsForCoordinates")
         when(val response = repository.getStreetObjectsForCoordinate(northwest, southwest)) {
+            is ApiResponse.Success -> {
+                dispatch(ThingsStoreFactory.Message.GotStreetObjects(response.body))
+            }
+            is ApiResponse.Error.HttpError -> {
+                dispatch(ThingsStoreFactory.Message.SetHttpError(response))
+            }
+            is ApiResponse.Error.NetworkError -> {
+                dispatch(ThingsStoreFactory.Message.SetNetworkError)
+            }
+            is ApiResponse.Error.SerializationError -> {
+                dispatch(ThingsStoreFactory.Message.SetSerializationError)
+            }
+            else -> throw IllegalStateException("No such response type")
+        }
+    }
+
+    private suspend fun getAllStreetObjects() {
+        dispatch(ThingsStoreFactory.Message.SetLoading)
+        when(val response = repository.getAllStreetObjects()) {
             is ApiResponse.Success -> {
                 dispatch(ThingsStoreFactory.Message.GotStreetObjects(response.body))
             }

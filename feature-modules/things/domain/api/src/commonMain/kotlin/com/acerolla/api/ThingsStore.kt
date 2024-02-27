@@ -24,5 +24,6 @@ interface ThingsStore: Store<ThingsStore.Intent, ThingsStore.State, ThingsStore.
             val northwest: CoordinatePoint,
             val southwest: CoordinatePoint
         ): Intent
+        data object GetAllStreetObjects: Intent
     }
 }

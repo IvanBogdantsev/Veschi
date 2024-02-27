@@ -17,4 +17,7 @@ interface ThingsNetworkService {
     suspend fun deleteStreetObjectByUUID(uuid: StreetObjectUUIDDto)
 
     suspend fun addStreetObject(obj: NewStreetObjectDto): ApiResponse<StreetObjectDto, ErrorResponse>
+
+    // TODO: for tests
+    suspend fun getAllStreetObjects(): ApiResponse<StreetObjectResponse, ErrorResponse>
 }

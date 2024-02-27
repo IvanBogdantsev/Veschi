@@ -17,7 +17,7 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun ThingsScreen() {
     val vm = koinViewModel<ThingsViewModel>()
-    vm.screenState.collectAsStateWithLifecycle()
+    val state = vm.screenState.collectAsStateWithLifecycle()
     Scaffold(
         modifier = Modifier
             .fillMaxSize()
@@ -31,7 +31,8 @@ fun ThingsScreen() {
         ) {
             MapBoxMap(
                 modifier = Modifier
-                    .fillMaxSize()
+                    .fillMaxSize(),
+                mapPoints = state.value.gotStreetObjects?.objects ?: emptyList()
             )
         }
     }

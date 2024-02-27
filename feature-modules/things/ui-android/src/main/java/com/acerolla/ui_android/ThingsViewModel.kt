@@ -29,9 +29,7 @@ class ThingsViewModel(
             store.states.map(stateMapper::map) bindTo (::acceptState)
         }
         binder.start()
-        getStreetObjectsForCoordinates(
-            CoordinatePoint(), CoordinatePoint()
-        )
+        getAllStreetObjects()
     }
 
     fun getStreetObjectsForCoordinates(northwest: CoordinatePoint, southeast: CoordinatePoint) {
@@ -41,6 +39,10 @@ class ThingsViewModel(
                 southwest = southeast
             )
         )
+    }
+
+    fun getAllStreetObjects() {
+        store.accept(ThingsStore.Intent.GetAllStreetObjects)
     }
 
     private fun acceptState(state: ThingsUiState) {

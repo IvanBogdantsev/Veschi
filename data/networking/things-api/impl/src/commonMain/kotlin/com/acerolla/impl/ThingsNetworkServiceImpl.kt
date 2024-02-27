@@ -65,8 +65,16 @@ class ThingsNetworkServiceImpl(
         }
     }
 
+    override suspend fun getAllStreetObjects(): ApiResponse<StreetObjectResponse, ErrorResponse> {
+        return httpClient.safeRequest {
+            method = HttpMethod.Get
+            url(ALL)
+        }
+    }
+
     private companion object {
 
+        const val ALL = "things/all"
         const val STREET_OBJECTS_BY_COORDINATES = "things/get_for_coordinates"
         const val STREET_OBJECT_BY_UUID = "things/street_object_info"
         const val DELETE_STREET_OBJECT_BY_UUID = "things/delete"

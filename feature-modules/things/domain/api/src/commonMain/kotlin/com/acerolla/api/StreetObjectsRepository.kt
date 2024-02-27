@@ -17,4 +17,7 @@ interface StreetObjectsRepository {
     suspend fun deleteStreetObjectByUUID(uuid: StreetObjectUUID)
 
     suspend fun addStreetObject(obj: NewStreetObject): ApiResponse<StreetObject, ErrorResponse>
+
+    // TODO: for tests
+    suspend fun getAllStreetObjects(): ApiResponse<StreetObjectsForCoordinate, ErrorResponse>
 }
