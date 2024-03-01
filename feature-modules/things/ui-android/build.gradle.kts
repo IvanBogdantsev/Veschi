@@ -57,6 +57,7 @@ dependencies {
     implementation(projects.shared)
     implementation ("com.mapbox.extension:maps-compose:11.2.0-rc.1")
     implementation("com.mapbox.maps:android:11.2.0-rc.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.7")
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)

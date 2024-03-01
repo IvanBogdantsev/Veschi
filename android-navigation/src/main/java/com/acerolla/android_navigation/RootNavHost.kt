@@ -41,6 +41,7 @@ fun RootNavHost() {
             }
         )
         mainAppGraph(
+            navController = rootNavController,
             onLogoutClick = {
                 rootNavController.navigateToAuthGraph()
             }

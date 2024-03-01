@@ -11,5 +11,5 @@ import org.koin.dsl.module
 fun thingsModule() = module {
 
     single<BaseMapper<ThingsStore.State, ThingsUiState>> { ThingsUiStateMapper() }
-    viewModel { ThingsViewModel(get(), get()) }
+    single { ThingsViewModel(get(), get()) } // hack for shared viewModel
 }

@@ -1,16 +1,24 @@
 package com.acerolla.ui_android
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asFlow
+import androidx.lifecycle.asLiveData
 import com.acerolla.api.ThingsStore
 import com.acerolla.api.models.CoordinatePoint
 import com.acerolla.common.mappers.BaseMapper
+import com.acerolla.ui_android.uio.StreetObjectUio
 import com.arkivanov.mvikotlin.core.binder.Binder
 import com.arkivanov.mvikotlin.extensions.coroutines.bind
 import com.arkivanov.mvikotlin.extensions.coroutines.states
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.BufferOverflow
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 
 class ThingsViewModel(
@@ -21,6 +29,15 @@ class ThingsViewModel(
     private val _screenState = MutableStateFlow(ThingsUiState())
     val screenState: StateFlow<ThingsUiState>
         get() = _screenState.asStateFlow()
+
+    private val _selectedStreetObjectFlow: MutableSharedFlow<StreetObjectUio> = MutableSharedFlow(
+        replay = 1,
+        extraBufferCapacity = 0,
+        onBufferOverflow = BufferOverflow.DROP_OLDEST
+    )
+    val selectedStreetObjectFlow = _selectedStreetObjectFlow
+        .asSharedFlow()
+        .distinctUntilChanged()
 
     private val binder: Binder
 
@@ -41,7 +58,11 @@ class ThingsViewModel(
         )
     }
 
-    fun getAllStreetObjects() {
+    fun onShowInfoForStreetObjectClick(obj: StreetObjectUio) {
+        _selectedStreetObjectFlow.tryEmit(obj)
+    }
+
+    private fun getAllStreetObjects() {
         store.accept(ThingsStore.Intent.GetAllStreetObjects)
     }
 

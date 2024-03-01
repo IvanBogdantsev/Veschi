@@ -1,6 +1,5 @@
 package com.acerolla.ui_android.screens.components
 
-import android.widget.Toast
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -10,42 +9,51 @@ import androidx.core.graphics.drawable.toBitmap
 import com.acerolla.android_design_system.ThingsAppTheme
 import com.acerolla.api.models.StreetObject
 import com.acerolla.shared_resources.SharedResources
+import com.acerolla.ui_android.uio.StreetObjectUio
+import com.google.gson.Gson
 import com.mapbox.geojson.Point
 import com.mapbox.maps.MapboxExperimental
 import com.mapbox.maps.extension.compose.MapboxMap
 import com.mapbox.maps.extension.compose.annotation.generated.PointAnnotationGroup
+import com.mapbox.maps.plugin.Plugin
 import com.mapbox.maps.plugin.annotation.generated.PointAnnotationOptions
+import kotlinx.collections.immutable.PersistentList
+import kotlinx.collections.immutable.persistentListOf
 
 @OptIn(MapboxExperimental::class)
 @Composable
 fun MapBoxMap(
     modifier: Modifier = Modifier,
-    mapPoints: List<StreetObject> = emptyList()
+    mapPoints: PersistentList<StreetObjectUio> = persistentListOf(),
+    onStreetObjectClick: (StreetObjectUio) -> Unit
 ) {
     val context = LocalContext.current
     val dr = SharedResources.images.street_object_marker.getDrawable(context)?.toBitmap()!!
+    val gson = Gson()
     MapboxMap(modifier = modifier.fillMaxSize()) {
         PointAnnotationGroup(
             annotations = mapPoints
                 .map {
-                    Point.fromLngLat(it.geometry.longitude, it.geometry.latitude)
-                }
-                .map {
+                    val obj = gson.toJsonTree(it)
                     PointAnnotationOptions()
-                        .withPoint(it)
+                        .withPoint(
+                            Point.fromLngLat(
+                                it.geometry.longitude,
+                                it.geometry.latitude
+                            )
+                        )
                         .withIconImage(dr)
+                        .withData(obj)
                 },
-            onClick = {
-                Toast.makeText(
-                    context,
-                    "Clicked on Circle Annotation Cluster item: $it",
-                    Toast.LENGTH_SHORT
-                ).show()
+            onClick = { pointAnnotation ->
+                pointAnnotation.getData()?.let { json ->
+                    val obj = gson.fromJson(json, StreetObjectUio::class.java)
+                    onStreetObjectClick(obj)
+                }
                 true
             }
         )
     }
-
 }
 
 @Preview
@@ -56,7 +64,8 @@ private fun MapBoxMap_Light_Theme_Preview() {
     ) {
         MapBoxMap(
             modifier = Modifier,
-            mapPoints = emptyList()
+            mapPoints = persistentListOf(),
+            onStreetObjectClick = {}
         )
     }
 }
@@ -69,7 +78,8 @@ private fun MapBoxMap_Dark_Theme_Preview() {
     ) {
         MapBoxMap(
             modifier = Modifier,
-            mapPoints = emptyList()
+            mapPoints = persistentListOf(),
+            onStreetObjectClick = {}
         )
     }
 }
