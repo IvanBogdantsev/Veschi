@@ -30,6 +30,9 @@ androidxLifecycle = "2.6.2"
 okhttp = "1.6.7"
 serialization = "1.9.20"
 androidx-uiTooling = "1.6.1"
+lifecycle-runtime-ktx = "2.7.0"
+compose-bom = "2023.08.00"
+kermit = "2.0.3"
 
 [libraries]
 
@@ -94,6 +97,14 @@ androidx-datastore-core = { group = "androidx.datastore", name = "datastore-pref
 # Timber
 timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber-version" }
 ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "androidx-uiTooling" }
+lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle-runtime-ktx" }
+compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
+ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+
+# Logger
+logger-kermit = { group = "co.touchlab", name = "kermit", version.ref = "kermit" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

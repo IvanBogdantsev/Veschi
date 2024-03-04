@@ -1,13 +1,12 @@
 package com.acerolla.networking_utils
 
-import com.acerolla.api.TokenManager
-import com.acerolla.api.models.AccessToken
-import com.acerolla.api.models.RefreshToken
-import com.acerolla.common.ApiResponse
-import com.acerolla.common.ErrorResponse
+import com.acerolla.add_thing_api.TokenManager
+import com.acerolla.add_thing_api.models.AccessToken
+import com.acerolla.add_thing_api.models.RefreshToken
 import com.acerolla.common.TokenResponse
 import com.acerolla.networking_utils.jwt.RefreshTokenDto
 import io.ktor.client.HttpClient
+import io.ktor.client.call.body
 import io.ktor.client.plugins.HttpSend
 import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
@@ -16,10 +15,10 @@ import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.plugins.plugin
 import io.ktor.client.request.headers
+import io.ktor.client.request.post
 import io.ktor.client.request.setBody
 import io.ktor.client.request.url
 import io.ktor.http.ContentType
-import io.ktor.http.HttpMethod
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.URLProtocol
 import io.ktor.http.contentType
@@ -35,7 +34,7 @@ class BaseNetworkHttpClientProvider(
 
     private val baseHttpClient: HttpClient = HttpClient {
         install(HttpTimeout) {
-            requestTimeoutMillis = 10_000
+            requestTimeoutMillis = 20_000
         }
         install(ContentNegotiation) {
             json(Json {
@@ -59,7 +58,6 @@ class BaseNetworkHttpClientProvider(
 
     override fun provideBaseHttpClient(): HttpClient = baseHttpClient
 
-    // TODO: Need refactoring
     override fun provideJwtHttpClient(): HttpClient {
         val jwtClient = baseHttpClient
         jwtClient.plugin(HttpSend).intercept { request ->
@@ -69,29 +67,31 @@ class BaseNetworkHttpClientProvider(
             }
             val originalCall = execute(request)
             if (originalCall.response.status == HttpStatusCode.Unauthorized) {
-                val refreshToken = tokenManager.getRefreshToken().first()?.token
-                val newTokenResponse = baseHttpClient.safeRequest<TokenResponse, ErrorResponse> {
-                    method = HttpMethod.Post
-                    setBody(RefreshTokenDto(refreshToken))
-                    url(refreshTokenUrl)
+                val newTokens = refreshToken()
+                tokenManager.saveAccessToken(AccessToken(newTokens.accessToken))
+                tokenManager.saveRefreshToken(RefreshToken(newTokens.refreshToken))
+                request.headers {
+                    append(AUTHORIZATION_HEADER, "Bearer ${newTokens.accessToken}")
                 }
-                when(newTokenResponse) {
-                    is ApiResponse.Success -> {
-                        tokenManager.saveAccessToken(AccessToken(newTokenResponse.body.accessToken))
-                        tokenManager.saveRefreshToken(RefreshToken(newTokenResponse.body.refreshToken))
-                        request.headers {
-                            append(AUTHORIZATION_HEADER, "Bearer ${newTokenResponse.body.accessToken}")
-                        }
-                        execute(request)
-                    }
-                    else -> {}
-                }
-                throw RuntimeException("Error while trying to refresh jwt token")
+                execute(request)
             } else {
                 originalCall
             }
         }
         return jwtClient
+    }
+
+    private suspend fun refreshToken(): TokenResponse {
+        val refreshToken = tokenManager.getRefreshToken().first()?.token
+        val newTokenResponse = baseHttpClient.post {
+            setBody(RefreshTokenDto(refreshToken))
+            url(refreshTokenUrl)
+        }
+        if (newTokenResponse.status == HttpStatusCode.OK) {
+            return newTokenResponse.body<TokenResponse>()
+        } else {
+            throw RuntimeException("Error while trying to refresh jwt token")
+        }
     }
 
     // TODO: Need to refactor and move mock build flag to BuildConfig

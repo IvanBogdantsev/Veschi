@@ -1,9 +1,10 @@
 package com.acerolla.common
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class ErrorResponse(
-    val code: Int,
-    val message: String
+    @SerialName("code") val code: Int,
+    @SerialName("message") val message: String
 )

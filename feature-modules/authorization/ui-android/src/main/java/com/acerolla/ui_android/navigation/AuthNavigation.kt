@@ -6,7 +6,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
-import com.acerolla.api.models.SignUpModel
+import com.acerolla.add_thing_api.models.SignUpModel
 import com.acerolla.ui_android.screens.CreateAccountScreen
 import com.acerolla.ui_android.screens.ForgotPasswordScreen
 import com.acerolla.ui_android.screens.SignInScreen

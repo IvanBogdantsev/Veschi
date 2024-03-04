@@ -33,6 +33,7 @@ kotlin {
         commonMain.dependencies {
             implementation(projects.data.datastore.api)
             implementation(libs.androidx.datastore.core)
+            implementation(libs.logger.kermit)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

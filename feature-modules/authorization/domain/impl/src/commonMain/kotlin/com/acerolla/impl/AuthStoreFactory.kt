@@ -1,7 +1,7 @@
 package com.acerolla.impl
 
-import com.acerolla.api.AuthRepository
-import com.acerolla.api.AuthStore
+import com.acerolla.add_thing_api.AuthRepository
+import com.acerolla.add_thing_api.AuthStore
 import com.acerolla.common.ApiResponse
 import com.acerolla.common.ErrorResponse
 import com.acerolla.common.TokenResponse

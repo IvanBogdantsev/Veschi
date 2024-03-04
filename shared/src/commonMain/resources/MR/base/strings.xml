@@ -45,6 +45,16 @@
     <string name="next">Далее</string>
     <!--    -->
 
+<!--    Things-->
+    <string name="watch_more">Подробнее</string>
+    <string name="back">Назад</string>
+    <string name="description">Описание</string>
+    <string name="vicinity">Окрестности</string>
+    <string name="get_street_object">Забрать</string>
+    <string name="category">Категория:</string>
+    <string name="condition">Состояние:</string>
+<!--    -->
+
     <string name="lorem_ipsum_short">Lorem ipsum dolor sit amet</string>
     <string name="lorem_ipsum_100">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
 

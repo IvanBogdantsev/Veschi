@@ -31,7 +31,13 @@ kotlin {
     
     sourceSets {
         commonMain.dependencies {
-            //put your multiplatform dependencies here
+            implementation(projects.core.common)
+            implementation(projects.featureModules.addThing.domain.api)
+            implementation(libs.mvi.core)
+            implementation(libs.mvi.main)
+            implementation(libs.mvi.logging)
+            implementation(libs.mvi.coroutines)
+            implementation(libs.kotlinx.coroutines)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

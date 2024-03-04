@@ -35,7 +35,7 @@ import com.acerolla.android_design_system.ThingsAppTheme
 import com.acerolla.android_design_system.components.DialogProgress
 import com.acerolla.android_design_system.emptyString
 import com.acerolla.android_design_system.stringResource
-import com.acerolla.api.models.SignUpModel
+import com.acerolla.add_thing_api.models.SignUpModel
 import com.acerolla.shared_resources.SharedResources
 import com.acerolla.ui_android.AuthViewModel
 import com.acerolla.ui_android.screens.components.AuthButton

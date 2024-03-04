@@ -1,9 +1,9 @@
 package com.acerolla.impl
 
-import com.acerolla.api.AuthStatePublisher
-import com.acerolla.api.AuthStore
-import com.acerolla.api.models.SignInModel
-import com.acerolla.api.models.SignUpModel
+import com.acerolla.add_thing_api.AuthStatePublisher
+import com.acerolla.add_thing_api.AuthStore
+import com.acerolla.add_thing_api.models.SignInModel
+import com.acerolla.add_thing_api.models.SignUpModel
 import com.arkivanov.mvikotlin.extensions.coroutines.states
 import kotlinx.coroutines.flow.Flow
 

@@ -43,6 +43,7 @@ kotlin {
             implementation(libs.kotlinx.coroutines)
             implementation(libs.kotlinx.datetime)
             implementation(libs.content.negotiation)
+            implementation(libs.logger.kermit)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

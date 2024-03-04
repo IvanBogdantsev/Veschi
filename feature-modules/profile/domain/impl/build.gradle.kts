@@ -32,6 +32,12 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(projects.featureModules.profile.domain.api)
+            implementation(projects.core.common)
+            implementation(libs.mvi.core)
+            implementation(libs.mvi.main)
+            implementation(libs.mvi.logging)
+            implementation(libs.mvi.coroutines)
+            implementation(libs.kotlinx.coroutines)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

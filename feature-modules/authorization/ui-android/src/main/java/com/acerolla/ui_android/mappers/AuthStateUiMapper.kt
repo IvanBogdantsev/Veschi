@@ -1,6 +1,6 @@
 package com.acerolla.ui_android.mappers
 
-import com.acerolla.api.AuthStore
+import com.acerolla.add_thing_api.AuthStore
 import com.acerolla.common.mappers.BaseMapper
 import com.acerolla.ui_android.UiState
 

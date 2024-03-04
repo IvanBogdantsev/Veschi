@@ -37,6 +37,7 @@ kotlin {
             implementation(libs.mvi.logging)
             implementation(libs.mvi.coroutines)
             implementation(libs.kotlinx.coroutines)
+            implementation(libs.logger.kermit)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

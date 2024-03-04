@@ -1,3 +1,5 @@
+val MAPBOX_DOWNLOADS_TOKEN: String by settings
+
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 pluginManagement {
     repositories {
@@ -11,6 +13,19 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven {
+            url = uri("https://jitpack.io")
+        }
+        maven {
+            url = uri("https://api.mapbox.com/downloads/v2/releases/maven")
+            authentication {
+                create<BasicAuthentication>("basic")
+            }
+            credentials {
+                username = "mapbox"
+                password = MAPBOX_DOWNLOADS_TOKEN
+            }
+        }
     }
 }
 
@@ -56,3 +71,12 @@ include(":feature-modules:add-thing:domain:impl")
 include(":feature-modules:add-thing:ui-android")
 include(":feature-modules:things:domain:api")
 include(":feature-modules:profile:domain:api")
+include(":data:networking:things-api")
+include(":data:networking:things-api:api")
+include(":data:networking:things-api:impl")
+include(":data:networking:add-thing-api")
+include(":data:networking:add-thing-api:api")
+include(":data:networking:add-thing-api:impl")
+include(":data:networking:profile-api")
+include(":data:networking:profile-api:api")
+include(":data:networking:profile-api:impl")
