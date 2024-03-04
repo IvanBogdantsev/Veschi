@@ -20,9 +20,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.acerolla.android_design_system.HORIZONTAL_PADDING
 import com.acerolla.android_design_system.ThingsAppTheme
-import com.acerolla.api.AuthStatusChecker
-import com.acerolla.api.AuthorizationNetworkService
-import com.acerolla.api.models.AuthStatus
+import com.acerolla.add_thing_api.AuthStatusChecker
+import com.acerolla.add_thing_api.AuthorizationNetworkService
+import com.acerolla.add_thing_api.models.AuthStatus
 import com.acerolla.common.ApiResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

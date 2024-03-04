@@ -1,15 +1,13 @@
 package com.acerolla.impl
 
-import com.acerolla.api.ThingsNetworkService
-import com.acerolla.api.models.CoordinatePointDto
-import com.acerolla.api.models.GetThingsRequest
-import com.acerolla.api.models.NewStreetObjectDto
-import com.acerolla.api.models.StreetObjectDto
-import com.acerolla.api.models.StreetObjectResponse
-import com.acerolla.api.models.StreetObjectUUIDDto
+import com.acerolla.add_thing_api.ThingsNetworkService
+import com.acerolla.add_thing_api.models.CoordinatePointDto
+import com.acerolla.add_thing_api.models.GetThingsRequest
+import com.acerolla.add_thing_api.models.StreetObjectDto
+import com.acerolla.add_thing_api.models.StreetObjectResponse
+import com.acerolla.add_thing_api.models.StreetObjectUUIDDto
 import com.acerolla.common.ApiResponse
 import com.acerolla.common.ErrorResponse
-import com.acerolla.networking_utils.BaseNetworkHttpClientProvider
 import com.acerolla.networking_utils.NetworkClientProvider
 import com.acerolla.networking_utils.safeRequest
 import io.ktor.client.request.parameter
@@ -57,14 +55,6 @@ class ThingsNetworkServiceImpl(
         }
     }
 
-    override suspend fun addStreetObject(obj: NewStreetObjectDto): ApiResponse<StreetObjectDto, ErrorResponse> {
-        return httpClient.safeRequest {
-            method = HttpMethod.Put
-            setBody(NewStreetObjectDto)
-            url(ADD_STREET_OBJECT)
-        }
-    }
-
     override suspend fun getAllStreetObjects(): ApiResponse<StreetObjectResponse, ErrorResponse> {
         return httpClient.safeRequest {
             method = HttpMethod.Get
@@ -78,7 +68,6 @@ class ThingsNetworkServiceImpl(
         const val STREET_OBJECTS_BY_COORDINATES = "things/get_for_coordinates"
         const val STREET_OBJECT_BY_UUID = "things/street_object_info"
         const val DELETE_STREET_OBJECT_BY_UUID = "things/delete"
-        const val ADD_STREET_OBJECT = "things/add"
         const val UUID_PARAMETER = "uuid"
     }
 }

@@ -1,10 +1,8 @@
 package com.acerolla.ui_android
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asFlow
-import androidx.lifecycle.asLiveData
-import com.acerolla.api.ThingsStore
-import com.acerolla.api.models.CoordinatePoint
+import com.acerolla.add_thing_api.ThingsStore
+import com.acerolla.add_thing_api.models.CoordinatePoint
 import com.acerolla.common.mappers.BaseMapper
 import com.acerolla.ui_android.uio.StreetObjectUio
 import com.arkivanov.mvikotlin.core.binder.Binder
@@ -12,7 +10,6 @@ import com.arkivanov.mvikotlin.extensions.coroutines.bind
 import com.arkivanov.mvikotlin.extensions.coroutines.states
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.BufferOverflow
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

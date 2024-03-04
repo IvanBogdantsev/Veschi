@@ -1,7 +1,7 @@
 package com.acerolla.ui_android.mappers
 
-import com.acerolla.api.models.Geometry
-import com.acerolla.api.models.StreetObject
+import com.acerolla.add_thing_api.models.Geometry
+import com.acerolla.add_thing_api.models.StreetObject
 import com.acerolla.ui_android.uio.GeometryUio
 import com.acerolla.ui_android.uio.StreetObjectUio
 

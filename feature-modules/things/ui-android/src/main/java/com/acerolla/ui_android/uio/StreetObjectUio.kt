@@ -1,8 +1,8 @@
 package com.acerolla.ui_android.uio
 
 import androidx.compose.runtime.Immutable
-import com.acerolla.api.models.Category
-import com.acerolla.api.models.Condition
+import com.acerolla.add_thing_api.models.Category
+import com.acerolla.add_thing_api.models.Condition
 
 @Immutable
 data class StreetObjectUio(

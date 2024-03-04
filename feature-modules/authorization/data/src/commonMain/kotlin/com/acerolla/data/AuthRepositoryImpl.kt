@@ -1,14 +1,14 @@
 package com.acerolla.data
 
-import com.acerolla.api.AuthRepository
-import com.acerolla.api.AuthStatusChecker
-import com.acerolla.api.AuthorizationNetworkService
-import com.acerolla.api.TokenManager
-import com.acerolla.api.models.AccessToken
-import com.acerolla.api.models.AuthStatus
-import com.acerolla.api.models.RefreshToken
-import com.acerolla.api.models.SignInModel
-import com.acerolla.api.models.SignUpModel
+import com.acerolla.add_thing_api.AuthRepository
+import com.acerolla.add_thing_api.AuthStatusChecker
+import com.acerolla.add_thing_api.AuthorizationNetworkService
+import com.acerolla.add_thing_api.TokenManager
+import com.acerolla.add_thing_api.models.AccessToken
+import com.acerolla.add_thing_api.models.AuthStatus
+import com.acerolla.add_thing_api.models.RefreshToken
+import com.acerolla.add_thing_api.models.SignInModel
+import com.acerolla.add_thing_api.models.SignUpModel
 import com.acerolla.common.ApiResponse
 import com.acerolla.common.ErrorResponse
 import com.acerolla.common.TokenResponse

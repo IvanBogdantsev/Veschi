@@ -1,8 +1,8 @@
 package com.acerolla.impl
 
-import com.acerolla.api.ThingsStatePublisher
-import com.acerolla.api.ThingsStore
-import com.acerolla.api.models.CoordinatePoint
+import com.acerolla.add_thing_api.ThingsStatePublisher
+import com.acerolla.add_thing_api.ThingsStore
+import com.acerolla.add_thing_api.models.CoordinatePoint
 import com.arkivanov.mvikotlin.extensions.coroutines.states
 import kotlinx.coroutines.flow.Flow
 
@@ -20,7 +20,6 @@ class ThingsStatePublisherImpl(
     }
 
     override fun getAllStreetObjects() {
-
         store.accept(ThingsStore.Intent.GetAllStreetObjects)
     }
 }

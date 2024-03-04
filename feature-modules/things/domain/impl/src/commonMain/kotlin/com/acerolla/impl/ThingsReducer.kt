@@ -1,7 +1,7 @@
 package com.acerolla.impl
 
-import com.acerolla.api.ThingsStore
-import com.acerolla.api.models.ThingsErrorModel
+import com.acerolla.add_thing_api.ThingsStore
+import com.acerolla.add_thing_api.models.ThingsErrorModel
 import com.arkivanov.mvikotlin.core.store.Reducer
 
 internal class ThingsReducer : Reducer<ThingsStore.State, ThingsStoreFactory.Message> {

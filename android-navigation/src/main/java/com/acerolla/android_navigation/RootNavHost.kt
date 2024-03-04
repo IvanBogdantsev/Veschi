@@ -11,7 +11,7 @@ import androidx.navigation.NavOptions
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.acerolla.api.AuthStatusChecker
+import com.acerolla.add_thing_api.AuthStatusChecker
 import com.acerolla.ui_android.navigation.AUTH_NAV_GRAPH_PATTERN
 import com.acerolla.ui_android.navigation.authGraph
 import org.koin.compose.koinInject

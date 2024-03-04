@@ -32,6 +32,7 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(projects.core.common)
+            implementation(projects.data.networking.thingsApi.api)
             implementation(libs.ktor.serialization)
             implementation(libs.ktor.serialization.json)
             implementation(libs.kotlinx.serialization.json)

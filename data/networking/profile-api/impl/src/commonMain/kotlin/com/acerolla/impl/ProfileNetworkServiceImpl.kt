@@ -1,6 +1,6 @@
 package com.acerolla.impl
 
-import com.acerolla.api.ProfileNetworkService
+import com.acerolla.add_thing_api.ProfileNetworkService
 import com.acerolla.networking_utils.NetworkClientProvider
 
 class ProfileNetworkServiceImpl(

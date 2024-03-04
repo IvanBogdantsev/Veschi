@@ -1,7 +1,7 @@
 package com.acerolla.impl
 
-import com.acerolla.api.AuthStore
-import com.acerolla.api.models.AuthErrorModel
+import com.acerolla.add_thing_api.AuthStore
+import com.acerolla.add_thing_api.models.AuthErrorModel
 import com.arkivanov.mvikotlin.core.store.Reducer
 
 internal class AuthReducer : Reducer<AuthStore.State, AuthStoreFactory.Message> {

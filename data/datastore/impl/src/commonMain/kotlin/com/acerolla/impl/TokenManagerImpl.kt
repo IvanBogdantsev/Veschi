@@ -4,9 +4,9 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
-import com.acerolla.api.TokenManager
-import com.acerolla.api.models.AccessToken
-import com.acerolla.api.models.RefreshToken
+import com.acerolla.add_thing_api.TokenManager
+import com.acerolla.add_thing_api.models.AccessToken
+import com.acerolla.add_thing_api.models.RefreshToken
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 

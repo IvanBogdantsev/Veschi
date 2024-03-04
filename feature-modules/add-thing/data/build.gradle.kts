@@ -34,6 +34,7 @@ kotlin {
             implementation(projects.core.common)
             implementation(projects.featureModules.addThing.domain.api)
             implementation(projects.data.networking.addThingApi.api)
+            implementation(projects.data.networking.thingsApi.api)
             implementation(projects.data.datastore.api)
             implementation(projects.featureModules.authorization.domain.api)
             implementation(projects.core.common)

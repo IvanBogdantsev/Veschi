@@ -13,7 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.acerolla.api.models.StreetObject
+import com.acerolla.add_thing_api.models.StreetObject
 import com.acerolla.ui_android.ThingsViewModel
 import com.acerolla.ui_android.mappers.toUio
 import com.acerolla.ui_android.screens.components.MapBoxMap

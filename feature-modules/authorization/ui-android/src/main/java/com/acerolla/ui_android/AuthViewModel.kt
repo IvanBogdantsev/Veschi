@@ -1,9 +1,9 @@
 package com.acerolla.ui_android
 
 import androidx.lifecycle.ViewModel
-import com.acerolla.api.AuthStore
-import com.acerolla.api.models.SignInModel
-import com.acerolla.api.models.SignUpModel
+import com.acerolla.add_thing_api.AuthStore
+import com.acerolla.add_thing_api.models.SignInModel
+import com.acerolla.add_thing_api.models.SignUpModel
 import com.acerolla.common.mappers.BaseMapper
 import com.arkivanov.mvikotlin.core.binder.Binder
 import com.arkivanov.mvikotlin.extensions.coroutines.bind

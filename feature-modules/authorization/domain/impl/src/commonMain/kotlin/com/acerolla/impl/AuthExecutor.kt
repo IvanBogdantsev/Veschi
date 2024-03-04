@@ -1,9 +1,9 @@
 package com.acerolla.impl
 
-import com.acerolla.api.AuthRepository
-import com.acerolla.api.AuthStore
-import com.acerolla.api.models.SignInModel
-import com.acerolla.api.models.SignUpModel
+import com.acerolla.add_thing_api.AuthRepository
+import com.acerolla.add_thing_api.AuthStore
+import com.acerolla.add_thing_api.models.SignInModel
+import com.acerolla.add_thing_api.models.SignUpModel
 import com.acerolla.common.ApiResponse
 import com.acerolla.common.BaseExecutor
 

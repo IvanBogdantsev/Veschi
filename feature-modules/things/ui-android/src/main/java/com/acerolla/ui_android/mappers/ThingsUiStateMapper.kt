@@ -1,6 +1,6 @@
 package com.acerolla.ui_android.mappers
 
-import com.acerolla.api.ThingsStore
+import com.acerolla.add_thing_api.ThingsStore
 import com.acerolla.common.mappers.BaseMapper
 import com.acerolla.ui_android.ThingsUiState
 

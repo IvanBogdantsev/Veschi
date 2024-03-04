@@ -1,7 +1,7 @@
 package com.acerolla.ui_android
 
-import com.acerolla.api.models.StreetObjectsForCoordinate
-import com.acerolla.api.models.ThingsErrorModel
+import com.acerolla.add_thing_api.models.StreetObjectsForCoordinate
+import com.acerolla.add_thing_api.models.ThingsErrorModel
 import com.acerolla.common.ErrorResponse
 
 data class ThingsUiState(

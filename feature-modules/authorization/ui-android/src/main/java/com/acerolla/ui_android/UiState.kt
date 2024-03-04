@@ -1,6 +1,6 @@
 package com.acerolla.ui_android
 
-import com.acerolla.api.models.AuthErrorModel
+import com.acerolla.add_thing_api.models.AuthErrorModel
 import com.acerolla.common.ErrorResponse
 
 data class UiState(

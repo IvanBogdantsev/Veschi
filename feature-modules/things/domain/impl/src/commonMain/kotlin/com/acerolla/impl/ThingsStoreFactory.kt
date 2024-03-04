@@ -1,8 +1,8 @@
 package com.acerolla.impl
 
-import com.acerolla.api.StreetObjectsRepository
-import com.acerolla.api.ThingsStore
-import com.acerolla.api.models.StreetObjectsForCoordinate
+import com.acerolla.add_thing_api.StreetObjectsRepository
+import com.acerolla.add_thing_api.ThingsStore
+import com.acerolla.add_thing_api.models.StreetObjectsForCoordinate
 import com.acerolla.common.ApiResponse
 import com.acerolla.common.ErrorResponse
 import com.arkivanov.mvikotlin.core.store.Store

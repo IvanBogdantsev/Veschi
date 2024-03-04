@@ -1,11 +1,10 @@
 package com.acerolla.impl
 
-import com.acerolla.api.StreetObjectsRepository
-import com.acerolla.api.ThingsStore
-import com.acerolla.api.models.CoordinatePoint
+import com.acerolla.add_thing_api.StreetObjectsRepository
+import com.acerolla.add_thing_api.ThingsStore
+import com.acerolla.add_thing_api.models.CoordinatePoint
 import com.acerolla.common.ApiResponse
 import com.acerolla.common.BaseExecutor
-import com.arkivanov.mvikotlin.logging.logger.Logger
 
 internal class ThingsExecutor(
     private val repository: StreetObjectsRepository,

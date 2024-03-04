@@ -1,14 +1,13 @@
 package com.acerolla.data
 
-import com.acerolla.api.StreetObjectsRepository
-import com.acerolla.api.ThingsNetworkService
-import com.acerolla.api.models.CoordinatePoint
-import com.acerolla.api.models.NewStreetObject
-import com.acerolla.api.models.StreetObject
-import com.acerolla.api.models.StreetObjectDto
-import com.acerolla.api.models.StreetObjectResponse
-import com.acerolla.api.models.StreetObjectUUID
-import com.acerolla.api.models.StreetObjectsForCoordinate
+import com.acerolla.add_thing_api.StreetObjectsRepository
+import com.acerolla.add_thing_api.ThingsNetworkService
+import com.acerolla.add_thing_api.models.CoordinatePoint
+import com.acerolla.add_thing_api.models.StreetObject
+import com.acerolla.add_thing_api.models.StreetObjectDto
+import com.acerolla.add_thing_api.models.StreetObjectResponse
+import com.acerolla.add_thing_api.models.StreetObjectUUID
+import com.acerolla.add_thing_api.models.StreetObjectsForCoordinate
 import com.acerolla.common.ApiResponse
 import com.acerolla.common.ErrorResponse
 import com.acerolla.common.mappers.BaseApiResponseMapper
@@ -33,9 +32,6 @@ class StreetObjectsRepositoryImpl(
             is ApiResponse.Error.SerializationError -> ApiResponse.Error.SerializationError
             is ApiResponse.Error.TimeoutError -> ApiResponse.Error.TimeoutError
         }
-//        return streetObjectResponseDtoToDomainModelMapper.map(
-//            thingsNetworkService.getStreetObjectsForCoordinate(northwest.toDto(), southeast.toDto())
-//        )
     }
 
     override suspend fun getStreetObjectInfoByUUID(uuid: StreetObjectUUID): ApiResponse<StreetObject, ErrorResponse> {
@@ -46,10 +42,6 @@ class StreetObjectsRepositoryImpl(
 
     override suspend fun deleteStreetObjectByUUID(uuid: StreetObjectUUID) {
         thingsNetworkService.deleteStreetObjectByUUID(uuid.toDto())
-    }
-
-    override suspend fun addStreetObject(obj: NewStreetObject): ApiResponse<StreetObject, ErrorResponse> {
-        return streetObjectDtoToDomainMapper.map(thingsNetworkService.addStreetObject(obj.toDto()))
     }
 
     override suspend fun getAllStreetObjects(): ApiResponse<StreetObjectsForCoordinate, ErrorResponse> {

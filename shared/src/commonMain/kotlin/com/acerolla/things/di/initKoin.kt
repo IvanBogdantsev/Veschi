@@ -1,25 +1,32 @@
 package com.acerolla.things.di
 
-import com.acerolla.api.AuthRepository
-import com.acerolla.api.AuthStatusChecker
-import com.acerolla.api.AuthStore
-import com.acerolla.api.AuthorizationNetworkService
-import com.acerolla.api.StreetObjectsRepository
-import com.acerolla.api.ThingsNetworkService
-import com.acerolla.api.ThingsStore
-import com.acerolla.api.TokenManager
-import com.acerolla.api.models.StreetObject
-import com.acerolla.api.models.StreetObjectDto
-import com.acerolla.api.models.StreetObjectResponse
-import com.acerolla.api.models.StreetObjectsForCoordinate
+import com.acerolla.add_thing_domain_api.AddThingStore
+import com.acerolla.add_thing_api.AddThingNetworkService
+import com.acerolla.add_thing_api.AuthRepository
+import com.acerolla.add_thing_api.AuthStatusChecker
+import com.acerolla.add_thing_api.AuthStore
+import com.acerolla.add_thing_api.AuthorizationNetworkService
+import com.acerolla.add_thing_api.ProfileNetworkService
+import com.acerolla.add_thing_api.StreetObjectsRepository
+import com.acerolla.add_thing_api.ThingsNetworkService
+import com.acerolla.add_thing_api.ThingsStore
+import com.acerolla.add_thing_api.TokenManager
+import com.acerolla.add_thing_api.models.StreetObject
+import com.acerolla.add_thing_api.models.StreetObjectDto
+import com.acerolla.add_thing_api.models.StreetObjectResponse
+import com.acerolla.add_thing_api.models.StreetObjectsForCoordinate
 import com.acerolla.common.mappers.BaseApiResponseMapper
 import com.acerolla.data.AuthRepositoryImpl
 import com.acerolla.data.StreetObjectsRepositoryImpl
 import com.acerolla.data.mappers.StreetObjectDtoToDomainModelMapper
 import com.acerolla.data.mappers.StreetObjectResponseDtoToDomainModelMapper
+import com.acerolla.impl.AddThingNetworkServiceImpl
+import com.acerolla.impl.AddThingStoreFactory
 import com.acerolla.impl.AuthStatusCheckerImpl
 import com.acerolla.impl.AuthStoreFactory
 import com.acerolla.impl.AuthorizationNetworkServiceImpl
+import com.acerolla.impl.ProfileNetworkServiceImpl
+import com.acerolla.impl.ProfileStoreFactory
 import com.acerolla.impl.ThingsNetworkServiceImpl
 import com.acerolla.impl.ThingsStoreFactory
 import com.acerolla.impl.TokenManagerImpl
@@ -27,6 +34,7 @@ import com.acerolla.networking_utils.BaseNetworkHttpClientProvider
 import com.acerolla.networking_utils.NetworkClientProvider
 import com.acerolla.networking_utils.jwt.JwtAuthManager
 import com.acerolla.networking_utils.jwt.JwtAuthManagerImpl
+import com.acerolla.profile_domain_api.ProfileStore
 import com.acerolla.things.platformModule
 import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.arkivanov.mvikotlin.logging.logger.Logger
@@ -90,4 +98,39 @@ private fun coreModule() = module {
         }
         LoggingStoreFactory(DefaultStoreFactory(), logger = logger)
     }
+
+    /** Add Thing Feature Dependencies */
+    single<AddThingNetworkService> { AddThingNetworkServiceImpl(get()) }
+    factory<AddThingStore> {
+        AddThingStoreFactory(
+            storeFactory = get(),
+            useCase = get()
+        ).create()
+    }
+    factory<StoreFactory> {
+        val logger = object : Logger {
+            override fun log(text: String) {
+                co.touchlab.kermit.Logger.withTag("AddThingStoreFactory").d(text)
+            }
+        }
+        LoggingStoreFactory(DefaultStoreFactory(), logger = logger)
+    }
+
+    /** Profile Feature Dependencies */
+    single<ProfileNetworkService> { ProfileNetworkServiceImpl(get()) }
+    factory<ProfileStore> {
+        ProfileStoreFactory(
+            storeFactory = get(),
+            repository = get()
+        ).create()
+    }
+    factory<StoreFactory> {
+        val logger = object : Logger {
+            override fun log(text: String) {
+                co.touchlab.kermit.Logger.withTag("ProfileStoreFactory").d(text)
+            }
+        }
+        LoggingStoreFactory(DefaultStoreFactory(), logger = logger)
+    }
+
 }

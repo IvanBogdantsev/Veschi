@@ -4,8 +4,8 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
-import com.acerolla.api.AuthStatusChecker
-import com.acerolla.api.models.AuthStatus
+import com.acerolla.add_thing_api.AuthStatusChecker
+import com.acerolla.add_thing_api.models.AuthStatus
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.map
 

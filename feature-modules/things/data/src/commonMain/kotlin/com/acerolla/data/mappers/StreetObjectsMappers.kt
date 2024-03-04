@@ -1,19 +1,17 @@
 package com.acerolla.data.mappers
 
-import com.acerolla.api.models.Category
-import com.acerolla.api.models.Condition
-import com.acerolla.api.models.CoordinatePoint
-import com.acerolla.api.models.CoordinatePointDto
-import com.acerolla.api.models.Geometry
-import com.acerolla.api.models.GeometryDto
-import com.acerolla.api.models.NewStreetObject
-import com.acerolla.api.models.NewStreetObjectDto
-import com.acerolla.api.models.StreetObject
-import com.acerolla.api.models.StreetObjectDto
-import com.acerolla.api.models.StreetObjectResponse
-import com.acerolla.api.models.StreetObjectUUID
-import com.acerolla.api.models.StreetObjectUUIDDto
-import com.acerolla.api.models.StreetObjectsForCoordinate
+import com.acerolla.add_thing_api.models.Category
+import com.acerolla.add_thing_api.models.Condition
+import com.acerolla.add_thing_api.models.CoordinatePoint
+import com.acerolla.add_thing_api.models.CoordinatePointDto
+import com.acerolla.add_thing_api.models.Geometry
+import com.acerolla.add_thing_api.models.GeometryDto
+import com.acerolla.add_thing_api.models.StreetObject
+import com.acerolla.add_thing_api.models.StreetObjectDto
+import com.acerolla.add_thing_api.models.StreetObjectResponse
+import com.acerolla.add_thing_api.models.StreetObjectUUID
+import com.acerolla.add_thing_api.models.StreetObjectUUIDDto
+import com.acerolla.add_thing_api.models.StreetObjectsForCoordinate
 import com.acerolla.common.ApiResponse
 import com.acerolla.common.mappers.BaseApiResponseMapper
 
@@ -80,7 +78,7 @@ fun String?.toCondition(): Condition? {
 
 fun String?.toCategory(): Category? {
     return when (this) {
-        "good" -> Category.BOOKS
+        "books" -> Category.BOOKS
         null -> null
         else -> Category.ELECTRONICS
     }
@@ -104,30 +102,5 @@ fun CoordinatePoint.toDto(): CoordinatePointDto {
 fun StreetObjectUUID.toDto(): StreetObjectUUIDDto {
     return StreetObjectUUIDDto(
         uuid = uuid
-    )
-}
-
-fun NewStreetObject.toDto(): NewStreetObjectDto {
-    return NewStreetObjectDto(
-        userId,
-        name,
-        description,
-        vicinity,
-        geometry.toDto(),
-        ownedByUser,
-        category?.name,
-        images,
-        thumbnailImage,
-        conditionIcon,
-        timestamp,
-        condition?.name
-    )
-}
-
-fun Geometry.toDto(): GeometryDto {
-    return GeometryDto(
-        latitude = latitude,
-        longitude = longitude,
-        accuracy = accuracy
     )
 }

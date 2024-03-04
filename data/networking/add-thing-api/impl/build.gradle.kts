@@ -32,6 +32,7 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(projects.data.networking.addThingApi.api)
+            implementation(projects.data.networking.thingsApi.api)
             implementation(projects.data.networking.networkingUtils)
             implementation(projects.core.common)
             implementation(libs.ktor.core)

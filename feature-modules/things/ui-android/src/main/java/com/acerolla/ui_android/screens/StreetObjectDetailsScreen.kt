@@ -41,8 +41,8 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.acerolla.android_design_system.HORIZONTAL_PADDING
 import com.acerolla.android_design_system.ThingsAppTheme
-import com.acerolla.api.models.Category
-import com.acerolla.api.models.Condition
+import com.acerolla.add_thing_api.models.Category
+import com.acerolla.add_thing_api.models.Condition
 import com.acerolla.shared_resources.SharedResources
 import com.acerolla.ui_android.ThingsViewModel
 import com.acerolla.ui_android.screens.components.StreetObjectImagesSlider
