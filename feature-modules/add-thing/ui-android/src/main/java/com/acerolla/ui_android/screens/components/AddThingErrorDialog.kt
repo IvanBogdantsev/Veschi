@@ -34,11 +34,11 @@ import com.acerolla.android_design_system.stringResource
 import com.acerolla.shared_resources.SharedResources
 
 @Composable
-fun AuthErrorDialog(
+fun AddThingErrorDialog(
     shouldShow: Boolean = true,
     msg: String? = emptyString(),
     dismissOnBackPressed: Boolean = true,
-    dismissOnClickOutside: Boolean = true,
+    dismissOnClickOutside: Boolean = true, 
     onDismissClicked: () -> Unit = {}
 ) {
     if (!shouldShow) return
@@ -112,7 +112,7 @@ private fun AuthErrorDialog_Light_Theme() {
     ThingsAppTheme(
         darkTheme = false
     ) {
-        AuthErrorDialog(
+        AddThingErrorDialog(
             msg = stringResource(id = SharedResources.strings.lorem_ipsum_100)
         )
     }
@@ -124,7 +124,7 @@ private fun AuthErrorDialog_Dark_Theme() {
     ThingsAppTheme(
         darkTheme = true
     ) {
-        AuthErrorDialog(
+        AddThingErrorDialog(
             msg = stringResource(id = SharedResources.strings.lorem_ipsum_short)
         )
     }

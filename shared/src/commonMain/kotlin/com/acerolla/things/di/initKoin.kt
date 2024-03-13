@@ -15,8 +15,11 @@ import com.acerolla.add_thing_api.models.StreetObject
 import com.acerolla.add_thing_api.models.StreetObjectDto
 import com.acerolla.add_thing_api.models.StreetObjectResponse
 import com.acerolla.add_thing_api.models.StreetObjectsForCoordinate
+import com.acerolla.add_thing_domain_api.AddThingsUseCase
 import com.acerolla.common.mappers.BaseApiResponseMapper
+import com.acerolla.data.AddThingsUseCaseImpl
 import com.acerolla.data.AuthRepositoryImpl
+import com.acerolla.data.ProfileRepositoryImpl
 import com.acerolla.data.StreetObjectsRepositoryImpl
 import com.acerolla.data.mappers.StreetObjectDtoToDomainModelMapper
 import com.acerolla.data.mappers.StreetObjectResponseDtoToDomainModelMapper
@@ -34,6 +37,7 @@ import com.acerolla.networking_utils.BaseNetworkHttpClientProvider
 import com.acerolla.networking_utils.NetworkClientProvider
 import com.acerolla.networking_utils.jwt.JwtAuthManager
 import com.acerolla.networking_utils.jwt.JwtAuthManagerImpl
+import com.acerolla.profile_domain_api.ProfileRepository
 import com.acerolla.profile_domain_api.ProfileStore
 import com.acerolla.things.platformModule
 import com.arkivanov.mvikotlin.core.store.StoreFactory
@@ -101,6 +105,7 @@ private fun coreModule() = module {
 
     /** Add Thing Feature Dependencies */
     single<AddThingNetworkService> { AddThingNetworkServiceImpl(get()) }
+    single<AddThingsUseCase> { AddThingsUseCaseImpl(get()) }
     factory<AddThingStore> {
         AddThingStoreFactory(
             storeFactory = get(),
@@ -118,6 +123,7 @@ private fun coreModule() = module {
 
     /** Profile Feature Dependencies */
     single<ProfileNetworkService> { ProfileNetworkServiceImpl(get()) }
+    single<ProfileRepository> { ProfileRepositoryImpl() }
     factory<ProfileStore> {
         ProfileStoreFactory(
             storeFactory = get(),
