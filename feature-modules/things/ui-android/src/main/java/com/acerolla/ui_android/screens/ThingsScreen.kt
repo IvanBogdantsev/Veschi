@@ -49,7 +49,7 @@ fun ThingsScreen(
                     showStreetObjectInfo = streetObject
                 }
             )
-            showStreetObjectInfo(
+            ShowStreetObjectInfo(
                 streetObject = showStreetObjectInfo,
                 onCloseBtnClick = {
                     showStreetObjectInfo = null
@@ -68,7 +68,7 @@ private fun getStreetObjectsList(list: List<StreetObject>?): PersistentList<Stre
 }
 
 @Composable
-private fun showStreetObjectInfo(
+private fun ShowStreetObjectInfo(
     streetObject: StreetObjectUio?,
     onCloseBtnClick: () -> Unit,
     onWatchMoreClick: (StreetObjectUio) -> Unit
@@ -78,7 +78,8 @@ private fun showStreetObjectInfo(
             modifier = Modifier
                 .padding(bottom = 20.dp),
             name = streetObject.name,
-            vicinity = streetObject.vicinity,
+            image = streetObject.images.first(),
+            description = streetObject.vicinity,
             onCloseBtnClick = onCloseBtnClick,
             onWatchMoreClick = {
                 onWatchMoreClick(streetObject)

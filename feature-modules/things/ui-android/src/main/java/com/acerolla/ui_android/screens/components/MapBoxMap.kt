@@ -11,10 +11,15 @@ import com.acerolla.shared_resources.SharedResources
 import com.acerolla.ui_android.uio.StreetObjectUio
 import com.google.gson.Gson
 import com.mapbox.geojson.Point
+import com.mapbox.maps.CameraOptions
+import com.mapbox.maps.MapInitOptions
 import com.mapbox.maps.MapboxExperimental
 import com.mapbox.maps.extension.compose.MapboxMap
 import com.mapbox.maps.extension.compose.annotation.generated.PointAnnotationGroup
 import com.mapbox.maps.plugin.annotation.generated.PointAnnotationOptions
+import com.mapbox.maps.plugin.attribution.generated.AttributionSettings
+import com.mapbox.maps.plugin.compass.generated.CompassSettings
+import com.mapbox.maps.plugin.scalebar.generated.ScaleBarSettings
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 
@@ -28,7 +33,17 @@ fun MapBoxMap(
     val context = LocalContext.current
     val dr = SharedResources.images.street_object_marker.getDrawable(context)?.toBitmap()!!
     val gson = Gson()
-    MapboxMap(modifier = modifier.fillMaxSize()) {
+    MapboxMap(
+        modifier = modifier.fillMaxSize(),
+        compassSettings = CompassSettings.Builder()
+            .setEnabled(false)
+            .build(),
+        scaleBarSettings = ScaleBarSettings.Builder()
+            .setEnabled(false)
+            .build(),
+        attributionSettings = AttributionSettings.Builder()
+            .build()
+    ) {
         PointAnnotationGroup(
             annotations = mapPoints
                 .map {

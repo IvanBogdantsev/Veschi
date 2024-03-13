@@ -20,6 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
@@ -29,21 +30,23 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
 import com.acerolla.android_design_system.ROUND_CORNER_RADIUS
 import com.acerolla.android_design_system.ThingsAppTheme
 import com.acerolla.android_design_system.stringResource
+import com.acerolla.common.stringToBitMap
 import com.acerolla.shared_resources.SharedResources
-import com.acerolla.ui_android.ThingsViewModel
-import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun StreetObjectInfoDialog(
     modifier: Modifier = Modifier,
     name: String?,
-    vicinity: String,
+    image: String,
+    description: String,
     onCloseBtnClick: () -> Unit,
     onWatchMoreClick: () -> Unit
 ) {
+    val bitmap = stringToBitMap(image)
     val interactionSource = remember { MutableInteractionSource() }
     Box(
         modifier = modifier
@@ -63,13 +66,12 @@ fun StreetObjectInfoDialog(
                     .background(Color.Gray.copy(alpha = 0.5f))
                     .weight(0.4f)
             ) {
-                Image(
+                AsyncImage(
                     modifier = Modifier
                         .fillMaxSize(),
-                    painter = painterResource(
-                        id = SharedResources.images.google_icon.drawableResId
-                    ),
+                    model = bitmap,
                     contentDescription = null,
+                    contentScale = ContentScale.Crop
                 )
                 Image(
                     modifier = Modifier
@@ -103,7 +105,7 @@ fun StreetObjectInfoDialog(
                     )
                     Text(
                         modifier = Modifier,
-                        text = vicinity,
+                        text = description,
                         fontFamily = FontFamily(Font(SharedResources.fonts.Inter.regular.fontResourceId)),
                         fontSize = 13.sp,
                         maxLines = 4,
@@ -139,7 +141,8 @@ private fun StreetObjectInfoDialog_Light_Theme_Preview() {
     ) {
         StreetObjectInfoDialog(
             name = "Lorem ipsum dolor sit amet amet amet",
-            vicinity = "Lorem ipsum dolor sit amet",
+            image = "",
+            description = "Lorem ipsum dolor sit amet",
             onCloseBtnClick = {},
             onWatchMoreClick = {}
         )
@@ -154,7 +157,8 @@ private fun StreetObjectInfoDialog_Dark_Theme_Preview() {
     ) {
         StreetObjectInfoDialog(
             name = "Lorem ipsum",
-            vicinity = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            image = "",
             onCloseBtnClick = {},
             onWatchMoreClick = {}
         )
