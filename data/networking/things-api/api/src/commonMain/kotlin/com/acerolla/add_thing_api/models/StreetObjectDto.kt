@@ -32,5 +32,5 @@ data class StreetObjectDto(
 data class GeometryDto(
     val latitude: Double,
     val longitude: Double,
-    val accuracy: Double,
+    val accuracy: Double = 0.0,
 )

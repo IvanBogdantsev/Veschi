@@ -29,14 +29,12 @@ import androidx.compose.ui.window.DialogProperties
 import com.acerolla.android_design_system.HORIZONTAL_PADDING
 import com.acerolla.android_design_system.ROUND_CORNER_RADIUS
 import com.acerolla.android_design_system.ThingsAppTheme
-import com.acerolla.android_design_system.emptyString
 import com.acerolla.android_design_system.stringResource
 import com.acerolla.shared_resources.SharedResources
 
 @Composable
-fun AuthErrorDialog(
+fun SuccessfullyAddedDialog(
     shouldShow: Boolean = true,
-    msg: String? = emptyString(),
     dismissOnBackPressed: Boolean = true,
     dismissOnClickOutside: Boolean = true,
     onDismissClicked: () -> Unit = {}
@@ -68,7 +66,7 @@ fun AuthErrorDialog(
                         .padding(top = 10.dp)
                         .padding(start = HORIZONTAL_PADDING)
                         .padding(bottom = 10.dp),
-                    text = stringResource(id = SharedResources.strings.error_occurred),
+                    text = stringResource(id = SharedResources.strings.successfully_added),
                     fontFamily = FontFamily(Font(SharedResources.fonts.Inter.medium.fontResourceId)),
                     fontSize = 14.sp,
                     color = Color(SharedResources.colors.primary.getColor(LocalContext.current))
@@ -80,7 +78,7 @@ fun AuthErrorDialog(
                     verticalArrangement = Arrangement.SpaceAround
                 ) {
                     Text(
-                        text = msg ?: emptyString(),
+                        text = stringResource(id = SharedResources.strings.successfully_added),
                         fontFamily = FontFamily(Font(SharedResources.fonts.Inter.regular.fontResourceId)),
                         fontSize = 15.sp,
                         color = MaterialTheme.colors.onBackground
@@ -95,7 +93,7 @@ fun AuthErrorDialog(
                             ) {
                                 onDismissClicked()
                             },
-                        text = stringResource(id = SharedResources.strings.try_again),
+                        text = stringResource(id = SharedResources.strings.close),
                         fontFamily = FontFamily(Font(SharedResources.fonts.Inter.bold.fontResourceId)),
                         fontSize = 16.sp,
                         color = Color(SharedResources.colors.primary.getColor(LocalContext.current))
@@ -112,7 +110,7 @@ private fun AuthErrorDialog_Light_Theme() {
     ThingsAppTheme(
         darkTheme = false
     ) {
-        AuthErrorDialog(
+        AddThingErrorDialog(
             msg = stringResource(id = SharedResources.strings.lorem_ipsum_100)
         )
     }
@@ -124,7 +122,7 @@ private fun AuthErrorDialog_Dark_Theme() {
     ThingsAppTheme(
         darkTheme = true
     ) {
-        AuthErrorDialog(
+        AddThingErrorDialog(
             msg = stringResource(id = SharedResources.strings.lorem_ipsum_short)
         )
     }

@@ -43,7 +43,9 @@ fun AppBottomNavHost(
             thingsGraph(
                 onWatchMoreClick = onScreenObjectDetailsClick
             )
-            addThingGraph()
+            addThingGraph(
+                navController = navController
+            )
             profileGraph(
                 onExitClick = onLogoutClick
             )

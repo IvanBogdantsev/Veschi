@@ -1,18 +1,18 @@
 package com.acerolla.add_thing_domain_api.model
 
 data class NewStreetObject(
-    val userId: String,
-    val name: String?,
-    val description: String?,
-    val vicinity: String,
-    val geometry: Geometry,
-    val ownedByUser: Boolean,
-    val category: Category?,
-    val images: List<String>,
-    val thumbnailImage: String,
-    val conditionIcon: String?,
-    val timestamp: Int,
-    val condition: Condition?
+    val userId: String = "",
+    val name: String? = null,
+    val description: String? = null,
+    val vicinity: String = "",
+    val geometry: Geometry = Geometry(0.0, 0.0, 0.0),
+    val ownedByUser: Boolean = false,
+    val category: Category? = null,
+    val images: List<String> = emptyList(),
+    val thumbnailImage: String = "",
+    val conditionIcon: String? = null,
+    val timestamp: Int = -1,
+    val condition: Condition? = null
 )
 
 data class Geometry(

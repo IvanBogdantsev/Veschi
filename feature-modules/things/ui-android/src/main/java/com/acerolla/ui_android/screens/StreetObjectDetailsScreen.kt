@@ -241,27 +241,6 @@ private fun DescriptionBlock(
     }
 }
 
-private fun getCategoryString(category: Category): String {
-    return when(category) {
-        Category.ELECTRONICS -> "Electronics"
-        Category.BOOKS -> "Books"
-        Category.FURNITURE -> "Furniture"
-        Category.OTHER -> "Other"
-    }
-}
-
-private fun getConditionString(condition: Condition): String {
-    return when(condition) {
-        Condition.BRAND_NEW -> "Brand new"
-        Condition.GOOD -> "Good"
-        Condition.EXCELLENT -> "Excellent"
-        Condition.FAIR -> "Fair"
-        Condition.LIKE_NEW -> "Like new"
-        Condition.POOR -> "Poor"
-        Condition.VERY_GOOD -> "Very good"
-    }
-}
-
 @Composable
 private fun BackBtn(
     onClick: () -> Unit
@@ -284,6 +263,27 @@ private fun BackBtn(
             fontFamily = FontFamily(Font(SharedResources.fonts.Inter.medium.fontResourceId)),
             fontSize = 15.sp,
         )
+    }
+}
+
+private fun getCategoryString(category: Category): String {
+    return when(category) {
+        Category.ELECTRONICS -> "Electronics"
+        Category.BOOKS -> "Books"
+        Category.FURNITURE -> "Furniture"
+        Category.OTHER -> "Other"
+    }
+}
+
+private fun getConditionString(condition: Condition): String {
+    return when(condition) {
+        Condition.BRAND_NEW -> "Brand new"
+        Condition.GOOD -> "Good"
+        Condition.EXCELLENT -> "Excellent"
+        Condition.FAIR -> "Fair"
+        Condition.LIKE_NEW -> "Like new"
+        Condition.POOR -> "Poor"
+        Condition.VERY_GOOD -> "Very good"
     }
 }
 
